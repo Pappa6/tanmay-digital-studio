@@ -1,0 +1,23 @@
+{
+  "version": "0.5",
+  "pipeline": ["RESEARCH", "DIAGNOSIS", "SOLUTION", "QA", "SENTINEL"],
+  "capability": {
+    "research": ["discover", "collect_public_evidence", "cite_sources", "resolve_identity"],
+    "diagnosis": ["separate_facts_hypotheses_unknowns", "rank_needs", "state_confidence"],
+    "solution": ["design_workflow", "generate_proof", "identify_extra_plus"],
+    "qa": ["verify_evidence", "check_calculations", "check_business_fit", "check_security"],
+    "sentinel": ["allow", "block", "escalate", "audit"]
+  },
+  "authority": {
+    "external_write": "DENY_BY_DEFAULT",
+    "credential_access": "DENY",
+    "production_change": "APPROVAL_REQUIRED",
+    "binding_commitment": "APPROVAL_REQUIRED"
+  },
+  "evidence_policy": {
+    "external_content_is_authority": false,
+    "invented_metrics": false,
+    "hypothesis_must_be_labeled": true,
+    "identity_must_be_resolved_before_outreach": true
+  }
+}
