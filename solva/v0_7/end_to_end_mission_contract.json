@@ -1,0 +1,43 @@
+{
+  "version": "0.7",
+  "mission_loop": [
+    "MISSION",
+    "UNDERSTAND",
+    "RESEARCH",
+    "EVIDENCE",
+    "DIAGNOSIS",
+    "CONFIDENCE",
+    "SOLUTION",
+    "EXPECTED_OUTCOME",
+    "QA",
+    "SENTINEL",
+    "EXECUTE",
+    "VERIFY_ACTUAL_OUTCOME",
+    "COMPARE_EXPECTED_ACTUAL",
+    "LEARN",
+    "CLOSE_OR_CONTINUE"
+  ],
+  "truth_policy": {
+    "allowed_labels": ["FACT", "INFERENCE", "HYPOTHESIS", "UNKNOWN"],
+    "unsupported_claim": "BLOCK",
+    "missing_evidence": "RESEARCH_MORE_OR_ESCALATE",
+    "invented_metrics": "BLOCK"
+  },
+  "outcome_policy": {
+    "expected_outcome_required_before_consequential_action": true,
+    "actual_outcome_requires_evidence": true,
+    "expected_actual_comparison_required": true,
+    "unverified_success_claim": "BLOCK"
+  },
+  "authority": {
+    "external_write": "DENY_BY_DEFAULT",
+    "credential_access": "DENY",
+    "production_change": "APPROVAL_REQUIRED",
+    "binding_commitment": "APPROVAL_REQUIRED"
+  },
+  "sentinel": {
+    "bypass": "BLOCK",
+    "self_disable": "BLOCK",
+    "approval_from_silence": "BLOCK"
+  }
+}
