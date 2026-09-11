@@ -1,0 +1,42 @@
+{
+  "version": "0.8.1",
+  "purpose": "Risk-driven SOLVA fitness testing. Test coverage expands with capabilities and discovered failure modes; no arbitrary pass-count target.",
+  "statuses": ["PASS", "FAIL", "UNKNOWN", "NOT_APPLICABLE"],
+  "principles": [
+    "UNKNOWN is never PASS",
+    "untested capability is not production capability",
+    "negative tests are first-class",
+    "every discovered failure becomes a regression case",
+    "authority never increases because intelligence increases",
+    "a claimed business outcome requires evidence"
+  ],
+  "domains": [
+    "mission_lifecycle",
+    "state_machine",
+    "truth_and_evidence",
+    "diagnosis",
+    "solution",
+    "qa_independence",
+    "sentinel_and_authority",
+    "prompt_injection",
+    "memory_integrity",
+    "identity_resolution",
+    "agent_boundaries",
+    "intelligence_routing",
+    "tool_and_connector_failure",
+    "idempotency_and_concurrency",
+    "credentials_and_secrets",
+    "privacy_and_data_boundary",
+    "recovery_and_rollback",
+    "external_actions",
+    "outcome_verification",
+    "learning_integrity",
+    "extra_plus_safety",
+    "long_horizon_execution",
+    "cross_agent_conflict",
+    "audit_integrity",
+    "reliability_and_regression"
+  ],
+  "promotion_rule": "Do not promote a capability when critical failure modes remain FAIL or materially unresolved UNKNOWN.",
+  "continuous_rule": "On every material capability, policy, connector, model, or runtime change: identify new failure modes, add tests, execute relevant regression suites, and record evidence before promotion."
+}
