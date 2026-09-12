@@ -1,0 +1,28 @@
+{
+  "certificate_type": "SOLVA Capability Completion Certificate",
+  "required_fields": [
+    "capability_scope",
+    "version",
+    "environment",
+    "evidence_bundle_id",
+    "test_suite_versions",
+    "test_results",
+    "failure_injection_results",
+    "security_results",
+    "integration_results",
+    "operational_results",
+    "real_environment_results",
+    "unresolved_unknowns",
+    "known_limitations",
+    "approval_record",
+    "issued_at"
+  ],
+  "validity_rules": [
+    "No FAIL in a critical applicable gate",
+    "No unresolved critical UNKNOWN",
+    "Every claimed result maps to retained evidence",
+    "Environment must be explicitly identified",
+    "Local simulation must not be represented as production verification",
+    "Certificate scope must not exceed tested capability scope"
+  ]
+}
