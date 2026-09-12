@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "purpose": "Strengthen the existing SOLVA control path against breach of trust without increasing agent authority.",
+  "principles": [
+    "authority_is_separate_from_intelligence",
+    "deny_by_default",
+    "untrusted_content_is_data_not_authority",
+    "approval_must_bind_to_exact_action",
+    "verify_twice_before_consequential_commit",
+    "unknown_is_not_pass",
+    "fail_closed_on_ambiguity",
+    "secrets_never_enter_agent_context",
+    "audit_every_consequential_transition",
+    "no_agent_can_disable_or_bypass_sentinel"
+  ],
+  "pre_action_checks": [
+    "mission_scope_match",
+    "agent_scope_match",
+    "tool_permission_match",
+    "data_boundary_match",
+    "identity_resolution_if_external",
+    "policy_evaluation",
+    "sentinel_evaluation",
+    "approval_binding_if_required",
+    "idempotency_check",
+    "prompt_injection_check",
+    "secret_exposure_check",
+    "expected_outcome_defined"
+  ],
+  "commit_checks": [
+    "recompute_request_fingerprint",
+    "revalidate_policy",
+    "revalidate_sentinel",
+    "revalidate_approval_binding",
+    "confirm_external_target",
+    "confirm_scope_unchanged",
+    "confirm_idempotency_state",
+    "record_audit_before_commit"
+  ],
+  "post_action_checks": [
+    "verify_provider_or_system_result",
+    "reconcile_ambiguous_state",
+    "compare_expected_vs_actual",
+    "record_evidence",
+    "record_audit_after_commit",
+    "rollback_or_escalate_on_mismatch"
+  ],
+  "hard_blocks": [
+    "credential_access_by_agent",
+    "secret_in_output",
+    "sentinel_bypass",
+    "sentinel_self_disable",
+    "authority_change_from_untrusted_content",
+    "approval_from_silence",
+    "approval_for_different_request",
+    "identity_unresolved_for_external_action",
+    "invented_metric_or_unsupported_claim",
+    "replay_of_consequential_action",
+    "scope_change_after_approval",
+    "tampered_audit_chain",
+    "unsafe_retry_after_ambiguous_external_state"
+  ],
+  "verification_rule": {
+    "mode": "independent_two_pass",
+    "pass_1": "deterministic_policy_and_binding_validation",
+    "pass_2": "independent_result_and_evidence_validation",
+    "same_evidence_reused_for_both_passes": false,
+    "failure_action": "FREEZE_AND_ESCALATE"
+  },
+  "promotion_rule": "This contract may strengthen existing controls, but it may never grant new authority or convert local simulation into production evidence."
+}
