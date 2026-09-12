@@ -28,6 +28,7 @@ def test_hard_blocks_cover_trust_breach_paths():
         "scope_change_after_approval",
         "tampered_audit_chain",
         "unsafe_retry_after_ambiguous_external_state",
+        "authority_bearing_parameter_drift",
     }
     assert required <= blocks
 
@@ -62,6 +63,17 @@ def test_untrusted_content_cannot_change_authority():
     principles = set(load()["principles"])
     assert "untrusted_content_is_data_not_authority" in principles
     assert "authority_is_separate_from_intelligence" in principles
+
+
+def test_parameter_continuity_is_explicitly_bound():
+    c = load()
+    required = {
+        "mission_id", "task_id", "agent_id", "policy_version",
+        "authority_scope", "request_fingerprint", "data_classification",
+        "evidence_references", "expected_outcome", "idempotency_key"
+    }
+    assert required <= set(c["continuity_invariants"])
+    assert "fresh policy and Sentinel decision" in c["continuity_rule"]
 
 
 def test_hardening_never_grants_authority():
