@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "purpose": "Strengthen the existing SOLVA control path against breach of trust without increasing agent authority.",
   "principles": [
     "authority_is_separate_from_intelligence",
@@ -11,7 +11,8 @@
     "fail_closed_on_ambiguity",
     "secrets_never_enter_agent_context",
     "audit_every_consequential_transition",
-    "no_agent_can_disable_or_bypass_sentinel"
+    "no_agent_can_disable_or_bypass_sentinel",
+    "parameter_continuity_is_invariant"
   ],
   "pre_action_checks": [
     "mission_scope_match",
@@ -45,6 +46,19 @@
     "record_audit_after_commit",
     "rollback_or_escalate_on_mismatch"
   ],
+  "continuity_invariants": [
+    "mission_id",
+    "task_id",
+    "agent_id",
+    "policy_version",
+    "authority_scope",
+    "request_fingerprint",
+    "data_classification",
+    "evidence_references",
+    "expected_outcome",
+    "idempotency_key"
+  ],
+  "continuity_rule": "A consequential transition is invalid if any bound invariant changes without a fresh policy and Sentinel decision. Context may be compacted or transformed, but authority-bearing parameters must remain lossless and verifiable.",
   "hard_blocks": [
     "credential_access_by_agent",
     "secret_in_output",
@@ -58,7 +72,8 @@
     "replay_of_consequential_action",
     "scope_change_after_approval",
     "tampered_audit_chain",
-    "unsafe_retry_after_ambiguous_external_state"
+    "unsafe_retry_after_ambiguous_external_state",
+    "authority_bearing_parameter_drift"
   ],
   "verification_rule": {
     "mode": "independent_two_pass",
