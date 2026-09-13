@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "gate": "G13",
+  "name": "Adaptive Resilience & Innovation Engine",
+  "status": "DESIGNED_AND_LOCALLY_TESTED",
+  "purpose": "Enable SOLVA to generate and safely evaluate novel recovery strategies when a failure is not fully covered by a predefined playbook, without increasing authority.",
+  "loop": ["DETECT", "UNDERSTAND", "CONTAIN", "GENERATE_HYPOTHESES", "SANDBOX_TEST", "VERIFY", "SELECT_SAFE_OPTION", "RECOVER", "MEASURE", "LEARN", "REGRESSION_LOCK"],
+  "innovation_boundary": {
+    "may_change": ["recovery_method", "tool_sequence", "safe_internal strategy", "sandbox hypothesis"],
+    "may_not_change": ["mission", "authority", "permissions", "Sentinel", "security_controls", "data_boundaries", "approval_requirements", "identity", "audit_history", "legal_or_financial_commitments"]
+  },
+  "truth_policy": {
+    "unknown_is_not_pass": true,
+    "evidence_required_for_selection": true,
+    "unsupported_recovery_claim": "BLOCK",
+    "insufficient_evidence": "ESCALATE"
+  },
+  "safety_policy": {
+    "credential_access": "DENY",
+    "sentinel_bypass": "DENY",
+    "authority_change": "DENY",
+    "audit_alteration": "DENY",
+    "skip_approval": "DENY",
+    "consequential_commit": "REQUIRES_EXISTING_AUTHORITY_AND_SENTINEL"
+  },
+  "learning_policy": {
+    "new_failure_pattern": "ADD_REGRESSION_CASE",
+    "promotion_requires_evidence": true,
+    "learning_cannot_grant_authority": true
+  },
+  "promotion_rule": "G13 cannot be production-ready until novel-failure generation, sandbox evaluation, recovery verification, regression capture, and intended-runtime evidence are all demonstrated."
+}
