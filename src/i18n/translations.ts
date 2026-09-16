@@ -455,7 +455,7 @@ export const translations: Record<Language, TranslationSchema> = {
       chatPortal: "Direct Chat Portal",
       commitmentTitle: "Commitment to Quality",
       commitmentDesc: "This digital asset is fully hand-coded without bloated third-party page builders or heavy dependencies. Built for absolute speed, responsive scaling, and maximum accessibility.",
-      copyright: "Tanmay Digital Studio. All rights reserved. Built with uncompromised precision.",
+      copyright: "CraftVanta. All rights reserved. Built with uncompromised precision.",
       craftedWith: "Crafted with",
       performance: "for international performance."
     },
@@ -725,7 +725,7 @@ export const translations: Record<Language, TranslationSchema> = {
       chatPortal: "সরাসরি চ্যাট পোর্টাল",
       commitmentTitle: "গুণমানের প্রতি প্রতিশ্রুতি",
       commitmentDesc: "এই ডিজিটাল সম্পদটি কোনো ভারী থার্ড-পার্টি পেজ বিল্ডার বা ভারী নির্ভরতা ছাড়াই সম্পূর্ণরূপে হ্যান্ড-কোড করা হয়েছে। পরম গতি, প্রতিক্রিয়াশীল স্কেলিং এবং সর্বোচ্চ অ্যাক্সেসযোগ্যতার জন্য নির্মিত।",
-      copyright: "Tanmay Digital Studio. সর্বস্বত্ব সংরক্ষিত। আপসহীন নির্ভুলতার সাথে নির্মিত।",
+      copyright: "CraftVanta. সর্বস্বত্ব সংরক্ষিত। আপসহীন নির্ভুলতার সাথে নির্মিত।",
       craftedWith: "যত্নে নির্মিত",
       performance: "আন্তর্জাতিক মানের জন্য।"
     },
@@ -995,7 +995,7 @@ export const translations: Record<Language, TranslationSchema> = {
       chatPortal: "सीधा चैट पोर्टल",
       commitmentTitle: "गुणवत्ता के प्रति प्रतिबद्धता",
       commitmentDesc: "यह डिजिटल संपत्ति बिना किसी भारी थर्ड-पार्टी पेज बिल्डर या भारी निर्भरता के पूरी तरह से हैंड-कोडेड है। पूर्ण गति, उत्तरदायी स्केलिंग और अधिकतम पहुंच के लिए निर्मित।",
-      copyright: "Tanmay Digital Studio. सर्वाधिकार सुरक्षित। अटूट सटीकता के साथ निर्मित।",
+      copyright: "CraftVanta. सर्वाधिकार सुरक्षित। अटूट सटीकता के साथ निर्मित।",
       craftedWith: "स्नेहपूर्वक निर्मित",
       performance: "अंतरराष्ट्रीय प्रदर्शन के लिए।"
     },
