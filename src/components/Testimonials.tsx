@@ -35,25 +35,25 @@ export default function Testimonials({ selectedPersona }: TestimonialsProps) {
       placeholderComment: "Placeholder data for client review - pending client approval for formal public release",
       testimonials: {
         healthcare: {
-          quote: "Tanmay Digital Studio transformed our clinical engagement. The patient registration workflow and zero-template portal earned our patients' trust instantly. High-compliance architecture was a crucial need that Tanmay executed flawlessly.",
+          quote: "CraftVanta transformed our clinical engagement. The patient registration workflow and zero-template portal earned our patients' trust instantly. High-compliance architecture was a crucial need that CraftVanta executed flawlessly.",
           name: "Dr. Amit Sen",
           designation: "Chief Medical Officer",
           company: "Aegis Healthcare Group"
         },
         finance: {
-          quote: "Working with Tanmay was a masterclass in business-first thinking. They built a custom portal for our High-Net-Worth advisory services with perfect data separation, high-security logs, and a layout that matches our brand's elite standing.",
+          quote: "Working with CraftVanta was a masterclass in business-first thinking. They built a custom portal for our High-Net-Worth advisory services with perfect data separation, high-security logs, and a layout that matches our brand's elite standing.",
           name: "Vikram Malhotra",
           designation: "Managing Director",
           company: "Sovereign Capital Partners"
         },
         retail: {
-          quote: "We needed an automated platform that could handle our high-volume luxury boutique inventory without slow load times. Tanmay Digital Studio crafted a beautiful, blazing-fast interface that boosted our client retention by 42%.",
+          quote: "We needed an automated platform that could handle our high-volume luxury boutique inventory without slow load times. CraftVanta crafted a beautiful, blazing-fast interface that boosted our client retention by 42%.",
           name: "Priya Das",
           designation: "Founder & Creative Director",
           company: "Das Atelier (Luxury Boutique)"
         },
         education: {
-          quote: "Tanmay designed a bespoke student onboarding and dashboard system that replaced our slow, template-based legacy portal. Our students love the clean layout and the integrated feedback workflow. Truly digital excellence.",
+          quote: "CraftVanta designed a bespoke student onboarding and dashboard system that replaced our slow, template-based legacy portal. Our students love the clean layout and the integrated feedback workflow. Truly digital excellence.",
           name: "Dr. Sarita Sharma",
           designation: "Director of Academics",
           company: "Vanguard Institute"
@@ -74,7 +74,7 @@ export default function Testimonials({ selectedPersona }: TestimonialsProps) {
       placeholderComment: "ক্লায়েন্ট রিভিউয়ের ডেমো ডেটা - আনুষ্ঠানিক পাবলিক রিলিজের জন্য ক্লায়েন্ট অনুমোদনের অপেক্ষায় রয়েছে",
       testimonials: {
         healthcare: {
-          quote: "আমাদের ক্লিনিকাল পোর্টাল ডিজাইন ও ডেভেলপমেন্টে Tanmay Digital Studio অসাধারণ কাজ করেছে। রোগীদের ডেটা নিরাপত্তা ও অ্যাপয়েন্টমেন্ট শিডিউলিং নিখুঁতভাবে কাস্টম-কোডেড সিস্টেমে পরিচালিত হচ্ছে।",
+          quote: "আমাদের ক্লিনিকাল পোর্টাল ডিজাইন ও ডেভেলপমেন্টে CraftVanta অসাধারণ কাজ করেছে। রোগীদের ডেটা নিরাপত্তা ও অ্যাপয়েন্টমেন্ট শিডিউলিং নিখুঁতভাবে কাস্টম-কোডেড সিস্টেমে পরিচালিত হচ্ছে।",
           name: "ডাঃ অমিত সেন",
           designation: "প্রধান চিকিৎসা কর্মকর্তা",
           company: "এজিস হেলথকেয়ার গ্রুপ"
@@ -86,7 +86,7 @@ export default function Testimonials({ selectedPersona }: TestimonialsProps) {
           company: "সোভেরেন ক্যাপিটাল পার্টনার্স"
         },
         retail: {
-          quote: "আমাদের লাক্সারি শাড়ি বুটিকের ইনভেন্টরি ও সেলস ট্র্যাকিংয়ের জন্য একটি অতি দ্রুত লোডিং ওয়েব সিস্টেম দরকার ছিল। Tanmay Digital Studio আমাদের জন্য সম্পূর্ণ কাস্টমাইজড একটি প্ল্যাটফর্ম তৈরি করে দিয়েছে।",
+          quote: "আমাদের লাক্সারি শাড়ি বুটিকের ইনভেন্টরি ও সেলস ট্র্যাকিংয়ের জন্য একটি অতি দ্রুত লোডিং ওয়েব সিস্টেম দরকার ছিল। CraftVanta আমাদের জন্য সম্পূর্ণ কাস্টমাইজড একটি প্ল্যাটফর্ম তৈরি করে দিয়েছে।",
           name: "প্রিয়া দাস",
           designation: "প্রতিষ্ঠাতা ও সৃজনশীল পরিচালক",
           company: "দাস আটেলিয়ার (লাক্সারি বুটিক)"

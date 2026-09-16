@@ -129,7 +129,7 @@ export default function CustomContactModal({ isOpen, onClose, initialPersona = "
     : "";
 
   const mailtoLink = `mailto:tanmay.mukherjee715@gmail.com?subject=${encodeURIComponent(`New Inquiry: ${formData.lookingFor}`)}&body=${encodeURIComponent(
-    `Hello Tanmay,
+    `Hello CraftVanta,
 
 I would like to inquire regarding ${formData.lookingFor}.
 
@@ -148,7 +148,7 @@ Best regards,
 ${formData.name}`
 )}`;
 
-  const whatsappMessage = `Hello Tanmay, my name is ${formData.name}. I'm looking for "${formData.lookingFor}". I've requested a consultation slot for ${formattedDate} at ${formData.time}. Brief details: ${formData.notes}`;
+  const whatsappMessage = `Hello CraftVanta, my name is ${formData.name}. I'm looking for "${formData.lookingFor}". I've requested a consultation slot for ${formattedDate} at ${formData.time}. Brief details: ${formData.notes}`;
   const whatsappUrl = `https://wa.me/918001195515?text=${encodeURIComponent(whatsappMessage)}`; // Standard formatted link
 
   const handleSubmit = (e: FormEvent) => {

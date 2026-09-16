@@ -114,7 +114,7 @@ export default function App() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                   </svg>
                 </div>
-                <span className="text-white font-display font-semibold text-sm">Tanmay Digital Studio</span>
+                <span className="text-white font-display font-semibold text-sm">CraftVanta</span>
               </div>
               <p className="text-xs text-slate-100 max-w-sm leading-relaxed font-light">
                 {t.footer.studioDesc}
@@ -138,7 +138,7 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row justify-between items-center pt-8 gap-4 text-xs">
             <p className="font-sans font-light text-slate-100">
-              &copy; {new Date().getFullYear()} Tanmay Digital Studio. {t.footer.copyright}
+              &copy; {new Date().getFullYear()} CraftVanta. {t.footer.copyright}
             </p>
             <div className="flex items-center space-x-1 text-slate-200">
               <span>{t.footer.craftedWith}</span>

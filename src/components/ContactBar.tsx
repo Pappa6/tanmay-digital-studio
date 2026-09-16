@@ -9,7 +9,7 @@ export default function ContactBar({ onOpenBooking }: ContactBarProps) {
   const { t, language, copyEmailToClipboard } = useLanguage();
   const email = "tanmay.mukherjee715@gmail.com";
   const phone = "+918001195515"; // Updated contact details
-  const whatsappUrl = "https://wa.me/918001195515?text=Hello%20Tanmay,%20I%27m%20interested%20in%20discussing%20a%20digital%20growth%20engagement.";
+  const whatsappUrl = "https://wa.me/918001195515?text=Hello%20CraftVanta,%20I%27m%20interested%20in%20discussing%20a%20digital%20growth%20engagement.";
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-lg px-4 md:px-0">

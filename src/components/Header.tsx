@@ -41,7 +41,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
         
         {/* Brand Logo & Tagline */}
         <a href="#hero" className="flex items-center space-x-3.5 group">
-          {/* Custom vector launcher icon shaped like Tanmay Studio logo */}
+          {/* CraftVanta brand logo icon */}
           <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-[0_4px_12px_rgba(209,165,60,0.2)] group-hover:scale-105 transition-transform duration-300">
             {/* Minimalist abstract growth path SVG line */}
             <svg
@@ -63,10 +63,10 @@ export default function Header({ onOpenBooking }: HeaderProps) {
           
           <div className="flex flex-col">
             <span className="text-base font-display font-semibold tracking-wide text-white group-hover:text-gold-300 transition-colors">
-              Tanmay Digital Studio
+              CraftVanta
             </span>
             <span className="text-[9px] uppercase tracking-[0.3em] font-mono text-slate-200 font-medium">
-              Business • Growth
+              craftvanta.in
             </span>
           </div>
         </a>
