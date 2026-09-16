@@ -109,11 +109,7 @@ export default function App() {
             
             <div className="md:col-span-5 space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-lg bg-gold-500 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-gold-950" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                  </svg>
-                </div>
+                <img src="/craftvanta-logo.png" alt="CraftVanta Logo" className="w-10 h-10 object-contain drop-shadow-lg" />
                 <span className="text-white font-display font-semibold text-sm">CraftVanta</span>
               </div>
               <p className="text-xs text-slate-100 max-w-sm leading-relaxed font-light">
