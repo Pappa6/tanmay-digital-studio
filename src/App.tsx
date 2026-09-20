@@ -190,8 +190,20 @@ const copy = {
 } as const;
 
 export default function App() {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window === "undefined") return "en";
+    const saved = localStorage.getItem("preferred_lang") as Lang | null;
+    if (saved === "en" || saved === "bn" || saved === "hi") return saved;
+    const browser = (navigator.language || "").toLowerCase();
+    if (browser.startsWith("bn")) return "bn";
+    if (browser.startsWith("hi")) return "hi";
+    return "en";
+  });
   const [menuOpen, setMenuOpen] = useState(false);
+  const changeLanguage = (next: Lang) => {
+    setLang(next);
+    if (typeof window !== "undefined") localStorage.setItem("preferred_lang", next);
+  };
   const t = copy[lang];
 
   const startUrl = "https://wa.me/918001195515?text=Hello%20CraftVanta%2C%20I%20would%20like%20to%20discuss%20a%20project.";
@@ -205,7 +217,7 @@ export default function App() {
             <img
               src="/craftvanta-logo.png"
               alt="CraftVanta"
-              className="h-11 sm:h-12 w-auto max-w-[220px] object-contain"
+              className="h-16 w-16 sm:h-16 sm:w-16 object-contain"
             />
           </a>
 
@@ -224,7 +236,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1">
               {(["en", "bn", "hi"] as Lang[]).map((code) => (
-                <button key={code} onClick={() => setLang(code)} className={`rounded-lg px-2.5 py-1 text-[10px] font-semibold transition ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200 hover:text-gold-300"}`}>
+                <button key={code} onClick={() => changeLanguage(code)} className={`rounded-lg px-2.5 py-1 text-[10px] font-semibold transition ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200 hover:text-gold-300"}`}>
                   {code === "bn" ? "বাং" : code.toUpperCase()}
                 </button>
               ))}
@@ -252,7 +264,7 @@ export default function App() {
               ))}
               <div className="flex gap-2 pt-2 sm:hidden">
                 {(["en", "bn", "hi"] as Lang[]).map((code) => (
-                  <button key={code} onClick={() => setLang(code)} className={`rounded-lg border border-white/10 px-3 py-1.5 text-[10px] ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200"}`}>
+                  <button key={code} onClick={() => changeLanguage(code)} className={`rounded-lg border border-white/10 px-3 py-1.5 text-[10px] ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200"}`}>
                     {code === "bn" ? "বাংলা" : code.toUpperCase()}
                   </button>
                 ))}
@@ -474,7 +486,7 @@ export default function App() {
         <div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 lg:flex-row lg:items-end lg:justify-between lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-10 w-auto max-w-[190px] object-contain" />
+              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-14 w-14 object-contain" />
               <span className="font-display font-semibold">CraftVanta</span>
             </div>
             <p className="mt-4 text-sm text-slate-300">{t.footer}</p>
