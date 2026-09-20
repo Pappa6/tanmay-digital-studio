@@ -377,8 +377,8 @@ export default function App() {
     <div className="min-h-screen bg-[#07101d] text-white antialiased selection:bg-[#d7a84b] selection:text-[#07101d]">
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/95 backdrop-blur-xl border-b border-white/10 py-2" : "bg-[#07101d]/85 backdrop-blur-md py-2"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <button onClick={() => navTo("hero")} className="flex h-[82px] w-[82px] sm:h-[94px] sm:w-[94px] items-center justify-center overflow-hidden" aria-label="CraftVanta home">
-            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-[260%] w-[260%] max-w-none object-cover object-center" />
+          <button onClick={() => navTo("hero")} className="flex h-[76px] w-[126px] sm:h-[86px] sm:w-[142px] items-center justify-center overflow-hidden" aria-label="CraftVanta home">
+            <img src="/craftvanta-master.jpg" alt="CraftVanta" className="h-full w-full object-contain" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -623,7 +623,7 @@ export default function App() {
 
       <footer className="bg-[#050b14] px-5 py-12 pb-28 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div><img src="/craftvanta-logo.png" alt="CraftVanta" className="h-28 w-28 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
+          <div><img src="/craftvanta-master.jpg" alt="CraftVanta" className="h-28 w-28 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Services</p><p className="mt-3 text-sm leading-6 text-white/50">{t.footer.services}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Method</p><p className="mt-3 text-sm text-white/50">{t.footer.process}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Founder</p><p className="mt-3 text-sm text-white/50">{t.footer.founder}<br/>{t.footer.location}</p></div>
