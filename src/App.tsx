@@ -375,10 +375,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#07101d] text-white antialiased selection:bg-[#d7a84b] selection:text-[#07101d]">
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/95 backdrop-blur-xl border-b border-white/10 py-2" : "bg-[#07101d]/85 backdrop-blur-md py-2"}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/95 backdrop-blur-xl border-b border-white/10 py-1" : "bg-[#07101d]/85 backdrop-blur-md py-1"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <button onClick={() => navTo("hero")} className="flex h-[84px] w-[92px] items-center justify-center shrink-0" aria-label="CraftVanta home">
-            <img src="/craftvanta-master.jpg" alt="CraftVanta" className="h-[84px] w-[84px] object-contain" />
+          <button onClick={() => navTo("hero")} className="flex h-[104px] w-[116px] items-center justify-center shrink-0" aria-label="CraftVanta home">
+            <img src="/craftvanta-master.jpg" alt="CraftVanta" className="h-[104px] w-[104px] object-contain" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
