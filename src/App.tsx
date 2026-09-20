@@ -33,7 +33,7 @@ const copy = {
       sub: "Websites, landing pages, branding and digital creatives built around the real needs of your business.",
       bn: "আপনার Idea, এবার Digital হোক।",
       cta: "Start a Project",
-      explore: "Explore Our Work",
+      explore: "Let’s Talk",
       founder: "Founder-led • Durgapur, West Bengal",
       visualTitle: "IDEA → DESIGN → BUILD → GROW",
       visualText: "A clear digital journey from business idea to a useful, credible online presence."
@@ -114,8 +114,8 @@ const copy = {
       title2: "Let's craft what's next.",
       bn: "আপনার Idea, এবার Digital হোক।",
       button: "Start a Project",
-      whatsapp: "WhatsApp",
-      call: "Call"
+      whatsapp: "Let’s Talk",
+      call: "Call / WhatsApp"
     },
     footer: {
       descriptor: "Digital Solutions. Crafted for Business.",
@@ -134,7 +134,7 @@ const copy = {
       sub: "আপনার business-এর বাস্তব প্রয়োজনকে কেন্দ্র করে Websites, Landing Pages, Branding এবং Digital Creatives।",
       bn: "আপনার Idea, এবার Digital হোক।",
       cta: "Project শুরু করুন",
-      explore: "আমাদের কাজ দেখুন",
+      explore: "Let’s Talk",
       founder: "Founder-led • Durgapur, West Bengal",
       visualTitle: "IDEA → DESIGN → BUILD → GROW",
       visualText: "Business idea থেকে একটি পরিষ্কার, বিশ্বাসযোগ্য digital presence-এর যাত্রা।"
@@ -215,8 +215,8 @@ const copy = {
       title2: "চলুন, পরেরটা craft করি।",
       bn: "আপনার Idea, এবার Digital হোক।",
       button: "Project শুরু করুন",
-      whatsapp: "WhatsApp",
-      call: "Call"
+      whatsapp: "Let’s Talk",
+      call: "Call / WhatsApp"
     },
     footer: {
       descriptor: "Digital Solutions. Crafted for Business.",
@@ -235,7 +235,7 @@ const copy = {
       sub: "आपके business की वास्तविक जरूरतों के अनुसार Websites, Landing Pages, Branding और Digital Creatives।",
       bn: "आपका Idea, अब Digital हो।",
       cta: "Project शुरू करें",
-      explore: "हमारा Work देखें",
+      explore: "Let’s Talk",
       founder: "Founder-led • Durgapur, West Bengal",
       visualTitle: "IDEA → DESIGN → BUILD → GROW",
       visualText: "Business idea से एक स्पष्ट और भरोसेमंद digital presence तक का सफर।"
@@ -369,13 +369,16 @@ export default function App() {
   const startProject = () => {
     window.open("https://wa.me/918001195515?text=Hello%20CraftVanta%2C%20I%27d%20like%20to%20discuss%20a%20project.", "_blank");
   };
+  const talk = () => {
+    window.open("https://wa.me/918001195515", "_blank");
+  };
 
   return (
     <div className="min-h-screen bg-[#07101d] text-white antialiased selection:bg-[#d7a84b] selection:text-[#07101d]">
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/90 backdrop-blur-xl border-b border-white/10 py-3" : "bg-transparent py-5"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
           <button onClick={() => navTo("hero")} className="flex items-center">
-            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-14 w-14 sm:h-16 sm:w-16 object-contain" />
+            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-[78px] w-[78px] sm:h-[92px] sm:w-[92px] object-contain" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -430,15 +433,15 @@ export default function App() {
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d7a84b]/40 bg-[#d7a84b]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f0ca72]">
                 <Sparkles className="h-3.5 w-3.5" /> {t.hero.eyebrow}
               </div>
-              <h1 className="max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight sm:text-6xl lg:text-8xl">
+              <h1 className="max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight sm:text-6xl lg:text-8xl [text-shadow:0_2px_0_rgba(255,255,255,.08),0_10px_28px_rgba(0,0,0,.35)]">
                 {t.hero.title}<br />
-                <span className="text-[#e2b65d]">{t.hero.title2}</span>
+                <span className="text-[#e2b65d] [text-shadow:0_2px_0_rgba(255,255,255,.16),0_8px_22px_rgba(215,168,75,.22)]">{t.hero.title2}</span>
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">{t.hero.sub}</p>
               <p className="mt-4 text-lg font-medium text-white">{t.hero.bn}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button onClick={startProject} className="inline-flex items-center gap-2 rounded-xl bg-[#d7a84b] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-[#07101d] hover:bg-[#f0ca72] transition">{t.hero.cta}<ArrowUpRight className="h-4 w-4" /></button>
-                <button onClick={() => navTo("work")} className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-white hover:bg-white/10 transition">{t.hero.explore}</button>
+                <button onClick={talk} className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-white hover:bg-white/10 transition"><MessageCircle className="h-4 w-4 text-emerald-400" />{t.hero.explore}</button>
               </div>
               <p className="mt-7 text-[10px] uppercase tracking-[0.18em] text-white/45">{t.hero.founder}</p>
             </motion.div>
@@ -608,7 +611,7 @@ export default function App() {
             <p className="mt-5 text-lg font-medium">{t.cta.bn}</p>
             <button onClick={startProject} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#07101d] px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white hover:bg-[#13263a] transition">{t.cta.button}<ArrowUpRight className="h-4 w-4"/></button>
             <div className="mt-7 flex justify-center gap-3">
-              <a href="https://wa.me/918001195515" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><MessageCircle className="h-4 w-4"/>{t.cta.whatsapp}</a>
+              <a href="https://wa.me/918001195515" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><MessageCircle className="h-4 w-4 text-emerald-600"/>{t.cta.whatsapp}</a>
               <a href="tel:+918001195515" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><Phone className="h-4 w-4"/>{t.cta.call}</a>
             </div>
           </div>
@@ -617,7 +620,7 @@ export default function App() {
 
       <footer className="bg-[#050b14] px-5 py-12 pb-28 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div><img src="/craftvanta-logo.png" alt="CraftVanta" className="h-16 w-16 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
+          <div><img src="/craftvanta-logo.png" alt="CraftVanta" className="h-24 w-24 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Services</p><p className="mt-3 text-sm leading-6 text-white/50">{t.footer.services}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Method</p><p className="mt-3 text-sm text-white/50">{t.footer.process}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Founder</p><p className="mt-3 text-sm text-white/50">{t.footer.founder}<br/>{t.footer.location}</p></div>
