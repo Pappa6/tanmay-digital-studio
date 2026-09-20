@@ -18,10 +18,10 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Start preview server
+      - name: Start static preview server
         run: |
-          npm run preview -- --host 127.0.0.1 > /tmp/craftvanta-preview.log 2>&1 &
-          for i in {1..60}; do
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory dist > /tmp/craftvanta-preview.log 2>&1 &
+          for i in {1..30}; do
             if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
             sleep 1
           done
