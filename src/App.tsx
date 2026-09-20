@@ -205,7 +205,7 @@ export default function App() {
             <img
               src="/craftvanta-logo.png"
               alt="CraftVanta"
-              className="h-14 w-14 sm:h-16 sm:w-16 object-contain"
+              className="h-11 sm:h-12 w-auto max-w-[220px] object-contain"
             />
           </a>
 
@@ -222,14 +222,14 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden items-center rounded-xl border border-white/10 bg-white/5 p-1 sm:flex">
+            <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1">
               {(["en", "bn", "hi"] as Lang[]).map((code) => (
                 <button key={code} onClick={() => setLang(code)} className={`rounded-lg px-2.5 py-1 text-[10px] font-semibold transition ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200 hover:text-gold-300"}`}>
                   {code === "bn" ? "বাং" : code.toUpperCase()}
                 </button>
               ))}
             </div>
-            <a href={startUrl} target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-xl bg-gold-400 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[#07101d] transition hover:bg-gold-300 sm:inline-flex">
+            <a href={startUrl} target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gold-400 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[#07101d] transition hover:bg-gold-300">
               <MessageCircle className="h-3.5 w-3.5" /> {t.start}
             </a>
             <button onClick={() => setMenuOpen(!menuOpen)} className="rounded-xl border border-white/10 bg-white/5 p-2.5 lg:hidden" aria-label="Open menu">
@@ -291,12 +291,21 @@ export default function App() {
               </div>
             </div>
 
-            <div className="hidden lg:col-span-4 lg:flex lg:items-end">
-              <div className="w-full rounded-[28px] border border-white/10 bg-white/[0.035] p-8 shadow-2xl backdrop-blur-sm">
-                <Globe2 className="mb-16 h-7 w-7 text-gold-300" />
-                <div className="font-serif text-3xl leading-tight text-white">Digital presence should feel like your business—not a template.</div>
-                <div className="mt-6 h-px w-full bg-white/10" />
-                <div className="mt-5 text-xs leading-6 text-slate-300">Founder-led. Purposeful. Crafted around the work that matters.</div>
+            <div className="lg:col-span-4">
+              <div className="relative min-h-[430px] overflow-hidden rounded-[28px] border border-white/10 bg-[#0b1624] shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85"
+                  alt="CraftVanta digital studio workspace"
+                  referrerPolicy="no-referrer"
+                  className="absolute inset-0 h-full w-full object-cover opacity-75"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07101d] via-[#07101d]/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <Globe2 className="mb-10 h-7 w-7 text-gold-300" />
+                  <div className="font-serif text-2xl leading-tight text-white">Digital presence should feel like your business—not a template.</div>
+                  <div className="mt-5 h-px w-full bg-white/20" />
+                  <div className="mt-4 text-xs leading-6 text-slate-200">Founder-led. Purposeful. Crafted around the work that matters.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -366,21 +375,36 @@ export default function App() {
               <p className="max-w-md text-sm leading-7 text-slate-600">{t.workText}</p>
             </div>
             <div className="mt-14 grid gap-5 lg:grid-cols-3">
-              {t.workCards.map(([tag, title, desc], i) => (
-                <article key={tag} className="relative min-h-[360px] overflow-hidden rounded-3xl border border-slate-200 bg-[#0a101d] p-7 text-white shadow-xl">
-                  <div className={`absolute inset-0 opacity-80 ${i === 0 ? "bg-[radial-gradient(circle_at_70%_20%,rgba(209,165,60,0.28),transparent_35%)]" : i === 1 ? "bg-[radial-gradient(circle_at_25%_80%,rgba(13,148,136,0.24),transparent_38%)]" : "bg-[radial-gradient(circle_at_70%_70%,rgba(209,165,60,0.16),transparent_40%)]"}`} />
-                  <div className="relative flex h-full flex-col justify-between">
-                    <div>
-                      <div className="font-mono text-[10px] tracking-[0.2em] text-gold-300">{tag}</div>
-                      <h3 className="mt-16 font-serif text-3xl">{title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{desc}</p>
+              {t.workCards.map(([tag, title, desc], i) => {
+                const images = [
+                  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85",
+                  "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85",
+                  "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=85"
+                ];
+                return (
+                  <article key={tag} className="group relative min-h-[430px] overflow-hidden rounded-3xl border border-slate-200 bg-[#0a101d] text-white shadow-xl">
+                    <img
+                      src={images[i]}
+                      alt={title}
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07101d] via-[#07101d]/45 to-transparent" />
+                    <div className="relative flex h-full flex-col justify-between p-7">
+                      <div>
+                        <div className="font-mono text-[10px] tracking-[0.2em] text-gold-300">{tag}</div>
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-3xl">{title}</h3>
+                        <p className="mt-4 text-sm leading-7 text-slate-200">{desc}</p>
+                        <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold-300">
+                          Studio concept <ArrowUpRight className="h-4 w-4" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold-300">
-                      Studio work <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -450,7 +474,7 @@ export default function App() {
         <div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 lg:flex-row lg:items-end lg:justify-between lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-12 w-12 object-contain" />
+              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-10 w-auto max-w-[190px] object-contain" />
               <span className="font-display font-semibold">CraftVanta</span>
             </div>
             <p className="mt-4 text-sm text-slate-300">{t.footer}</p>
