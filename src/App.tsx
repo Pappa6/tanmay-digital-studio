@@ -375,10 +375,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#07101d] text-white antialiased selection:bg-[#d7a84b] selection:text-[#07101d]">
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/90 backdrop-blur-xl border-b border-white/10 py-3" : "bg-transparent py-5"}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/95 backdrop-blur-xl border-b border-white/10 py-2" : "bg-[#07101d]/85 backdrop-blur-md py-2"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <button onClick={() => navTo("hero")} className="flex items-center">
-            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-[78px] w-[78px] sm:h-[92px] sm:w-[92px] object-contain" />
+          <button onClick={() => navTo("hero")} className="flex h-[82px] w-[82px] sm:h-[94px] sm:w-[94px] items-center justify-center overflow-hidden" aria-label="CraftVanta home">
+            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-[150%] w-[150%] max-w-none object-cover object-center" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -428,7 +428,7 @@ export default function App() {
         <section id="hero" className="relative min-h-[820px] overflow-hidden bg-[#07101d] pt-32">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(28,104,167,0.24),transparent_34%),radial-gradient(circle_at_20%_70%,rgba(215,168,75,0.08),transparent_30%)]" />
           <div className="absolute inset-0 opacity-25" style={{backgroundImage:"linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px)",backgroundSize:"72px 72px"}} />
-          <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 sm:px-8 lg:grid-cols-12">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-8 sm:px-8 lg:grid-cols-12">
             <motion.div initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="lg:col-span-7">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d7a84b]/40 bg-[#d7a84b]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f0ca72]">
                 <Sparkles className="h-3.5 w-3.5" /> {t.hero.eyebrow}
@@ -623,7 +623,7 @@ export default function App() {
 
       <footer className="bg-[#050b14] px-5 py-12 pb-28 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div><img src="/craftvanta-logo.png" alt="CraftVanta" className="h-24 w-24 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
+          <div><img src="/craftvanta-logo.png" alt="CraftVanta" className="h-28 w-28 object-contain"/><p className="mt-4 text-sm font-medium">{t.footer.descriptor}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Services</p><p className="mt-3 text-sm leading-6 text-white/50">{t.footer.services}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Method</p><p className="mt-3 text-sm text-white/50">{t.footer.process}</p></div>
           <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#e2b65d]">Founder</p><p className="mt-3 text-sm text-white/50">{t.footer.founder}<br/>{t.footer.location}</p></div>
