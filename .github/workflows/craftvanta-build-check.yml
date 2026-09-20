@@ -1,0 +1,45 @@
+name: CraftVanta Preview Check
+
+on:
+  push:
+    branches: [craftvanta-rebrand]
+  workflow_dispatch:
+
+jobs:
+  build-and-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Start static preview server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory dist > /tmp/craftvanta-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/craftvanta-preview.log
+          exit 1
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Capture desktop and mobile previews
+        run: |
+          npx playwright screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/ craftvanta-desktop.png
+          npx playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173/ craftvanta-mobile.png
+
+      - name: Upload visual previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: craftvanta-visual-preview
+          path: |
+            craftvanta-desktop.png
+            craftvanta-mobile.png

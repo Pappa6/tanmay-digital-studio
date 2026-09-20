@@ -1,166 +1,508 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { useState } from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import CaseStudies from "./components/CaseStudies";
-import Testimonials from "./components/Testimonials";
-import Principles from "./components/Principles";
-import Sectors from "./components/Sectors";
-import Process from "./components/Process";
-import ContactBar from "./components/ContactBar";
-import CustomContactModal from "./components/CustomContactModal";
-import LanguageToast from "./components/LanguageToast";
-import AIChatWidget from "./components/AIChatWidget";
-import { ArrowUpRight, Heart, Calendar } from "lucide-react";
-import { useLanguage } from "./context/LanguageContext";
+import { ArrowRight, ArrowUpRight, Check, Menu, MessageCircle, Mail, Phone, Sparkles, Globe2 } from "lucide-react";
+
+type Lang = "en" | "bn" | "hi";
+
+const copy = {
+  en: {
+    nav: ["Services", "Process", "Work", "Principles", "Contact"],
+    eyebrow: "FOUNDER-LED DIGITAL STUDIO",
+    hero: "Digital Solutions. Crafted for Business.",
+    heroText: "CraftVanta helps businesses turn ideas into professional digital experiences—through websites, landing pages, branding and digital creatives.",
+    servicesLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    processLine: "IDEA → DESIGN → BUILD → GROW",
+    start: "Start a Project",
+    work: "Explore Our Work",
+    whoEy: "WHO WE ARE",
+    whoTitle: "We turn ideas into digital experiences.",
+    whoText: "CraftVanta is a founder-led digital solutions brand built around one simple belief: good digital work should look purposeful, feel clear and serve a real business need.",
+    founder: "Founded by Tanmay Mukherjee · Founder, CraftVanta",
+    serviceEy: "WHAT WE CRAFT",
+    serviceTitle: "Digital work with a business purpose.",
+    services: [
+      ["01", "Websites", "Professional websites that build credibility, communicate value and help visitors take the next step."],
+      ["02", "Landing Pages", "Focused digital experiences built around one clear business objective."],
+      ["03", "Branding", "Logos, visual identity and brand systems that make a business recognisable."],
+      ["04", "Digital Creatives", "Social creatives, banners, campaigns and promotional visuals designed for attention and clarity."]
+    ],
+    processEy: "OUR METHOD",
+    processTitle: "IDEA → DESIGN → BUILD → GROW",
+    process: [
+      ["IDEA", "You bring the idea.", "We understand the business behind it, the audience and the objective."],
+      ["DESIGN", "We shape the experience.", "Strategy becomes visual direction, structure and a clear digital story."],
+      ["BUILD", "We make it real.", "Design becomes a responsive, working digital solution."],
+      ["GROW", "We keep it moving.", "Your digital presence becomes a business asset that can evolve."]
+    ],
+    workEy: "SELECTED WORK",
+    workTitle: "Real problems. Crafted solutions.",
+    workText: "A growing portfolio of websites, landing pages, brand systems and digital creative work.",
+    workCards: [
+      ["BUSINESS WEBSITE", "Digital presence", "A clean, credible website architecture built around a business story."],
+      ["LANDING PAGE", "Conversion experience", "A focused page designed to communicate one offer with clarity."],
+      ["BRAND & CREATIVE", "Visual system", "A coherent visual direction for social, campaigns and customer touchpoints."]
+    ],
+    advancedEy: "CUSTOM DIGITAL SOLUTIONS",
+    advancedTitle: "When the business needs more.",
+    advancedText: "For projects that go beyond the front-end, CraftVanta can extend into custom interfaces, automation workflows, AI-assisted experiences, data-driven systems and tailored digital operations.",
+    principlesEy: "OUR PRINCIPLES",
+    principlesTitle: "How we work.",
+    principles: [
+      ["01", "Business Before Design", "Every design decision should have a purpose."],
+      ["02", "Clarity Before Complexity", "Simple experiences are easier to understand and use."],
+      ["03", "Purpose Before Trends", "We do not use a trend simply because it looks impressive."],
+      ["04", "Craft Before Compromise", "Details matter when your brand is on the line."],
+      ["05", "Build for Tomorrow", "Digital work should be useful today and ready to evolve tomorrow."]
+    ],
+    proofEy: "TRUSTED THROUGH THE WORK",
+    proofTitle: "No invented testimonials. No inflated claims.",
+    proofText: "CraftVanta is building its public portfolio carefully. Genuine client stories and verified outcomes will be added as they become available.",
+    ctaEy: "START A PROJECT",
+    ctaTitle: "Got an idea?",
+    ctaText: "Let's craft what's next.",
+    ctaBn: "আপনার Idea, এবার Digital হোক।",
+    contact: "Talk to CraftVanta",
+    footer: "Digital Solutions. Crafted for Business.",
+    footerLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    language: "Language"
+  },
+  bn: {
+    nav: ["সার্ভিস", "প্রসেস", "কাজ", "নীতিমালা", "যোগাযোগ"],
+    eyebrow: "DIGITAL SOLUTIONS. CRAFTED FOR BUSINESS.",
+    hero: "আপনার Idea, এবার Digital হোক।",
+    heroText: "CraftVanta ব্যবসার Idea-কে professional digital experience-এ রূপ দেয়—Websites, Landing Pages, Branding এবং Digital Creatives-এর মাধ্যমে।",
+    servicesLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    processLine: "IDEA → DESIGN → BUILD → GROW",
+    start: "Start a Project",
+    work: "আমাদের কাজ দেখুন",
+    whoEy: "WHO WE ARE",
+    whoTitle: "আমরা Idea-কে digital experience-এ রূপ দিই।",
+    whoText: "CraftVanta একটি founder-led digital solutions brand। আমাদের লক্ষ্য—ডিজাইন যেন শুধু সুন্দর না হয়; তা যেন পরিষ্কার, purposeful এবং বাস্তব business need-এর জন্য তৈরি হয়।",
+    founder: "Founded by Tanmay Mukherjee · Founder, CraftVanta",
+    serviceEy: "WHAT WE CRAFT",
+    serviceTitle: "Business purpose-সহ digital work.",
+    services: [
+      ["01", "Websites", "বিশ্বাসযোগ্যতা তৈরি করে এবং visitor-কে পরবর্তী পদক্ষেপে নিয়ে যায় এমন professional website।"],
+      ["02", "Landing Pages", "একটি পরিষ্কার business objective-কে কেন্দ্র করে তৈরি focused digital experience।"],
+      ["03", "Branding", "Logo, visual identity এবং brand system—যাতে business সহজে চিনে রাখা যায়।"],
+      ["04", "Digital Creatives", "Social creatives, banners, campaigns এবং promotional visuals—attention ও clarity-র জন্য।"]
+    ],
+    processEy: "OUR METHOD",
+    processTitle: "IDEA → DESIGN → BUILD → GROW",
+    process: [
+      ["IDEA", "আপনি Idea নিয়ে আসুন।", "আমরা business, audience এবং objective বুঝি।"],
+      ["DESIGN", "আমরা experience তৈরি করি।", "Strategy থেকে visual direction ও clear digital story তৈরি হয়।"],
+      ["BUILD", "আমরা সেটিকে বাস্তব করি।", "Design হয়ে ওঠে responsive, working digital solution।"],
+      ["GROW", "আমরা এগিয়ে যেতে সাহায্য করি।", "আপনার digital presence একটি evolving business asset হয়ে ওঠে।"]
+    ],
+    workEy: "SELECTED WORK",
+    workTitle: "Real problems. Crafted solutions.",
+    workText: "Websites, landing pages, brand systems এবং digital creative work-এর growing portfolio।",
+    workCards: [
+      ["BUSINESS WEBSITE", "Digital presence", "Business story-কে কেন্দ্র করে clean ও credible website architecture।"],
+      ["LANDING PAGE", "Conversion experience", "একটি offer-কে পরিষ্কারভাবে communicate করার জন্য focused page।"],
+      ["BRAND & CREATIVE", "Visual system", "Social, campaigns ও customer touchpoints-এর জন্য coherent visual direction।"]
+    ],
+    advancedEy: "CUSTOM DIGITAL SOLUTIONS",
+    advancedTitle: "Business-এর আরও বেশি দরকার হলে।",
+    advancedText: "Front-end-এর বাইরে প্রয়োজন হলে custom interfaces, automation workflows, AI-assisted experiences, data-driven systems এবং tailored digital operations তৈরি করা যায়।",
+    principlesEy: "OUR PRINCIPLES",
+    principlesTitle: "আমরা যেভাবে কাজ করি।",
+    principles: [
+      ["01", "Business Before Design", "প্রতিটি design decision-এর একটি purpose থাকা উচিত।"],
+      ["02", "Clarity Before Complexity", "Simple experience বোঝা ও ব্যবহার করা সহজ।"],
+      ["03", "Purpose Before Trends", "শুধু trend বলে আমরা তা ব্যবহার করি না।"],
+      ["04", "Craft Before Compromise", "Brand-এর প্রতিটি detail গুরুত্বপূর্ণ।"],
+      ["05", "Build for Tomorrow", "আজ useful এবং আগামীকাল evolve করার মতো digital work।"]
+    ],
+    proofEy: "TRUSTED THROUGH THE WORK",
+    proofTitle: "কোনও invented testimonial নয়। কোনও inflated claim নয়।",
+    proofText: "CraftVanta তার public portfolio ধীরে ও সততার সঙ্গে তৈরি করছে। Genuine client stories এবং verified outcomes পাওয়া গেলে যুক্ত করা হবে।",
+    ctaEy: "START A PROJECT",
+    ctaTitle: "Got an idea?",
+    ctaText: "Let's craft what's next.",
+    ctaBn: "আপনার Idea, এবার Digital হোক।",
+    contact: "CraftVanta-এর সঙ্গে কথা বলুন",
+    footer: "Digital Solutions. Crafted for Business.",
+    footerLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    language: "ভাষা"
+  },
+  hi: {
+    nav: ["Services", "Process", "Work", "Principles", "Contact"],
+    eyebrow: "DIGITAL SOLUTIONS. CRAFTED FOR BUSINESS.",
+    hero: "Your idea, now digital.",
+    heroText: "CraftVanta helps businesses turn ideas into professional digital experiences through websites, landing pages, branding and digital creatives.",
+    servicesLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    processLine: "IDEA → DESIGN → BUILD → GROW",
+    start: "Start a Project",
+    work: "Explore Our Work",
+    whoEy: "WHO WE ARE",
+    whoTitle: "We turn ideas into digital experiences.",
+    whoText: "CraftVanta is a founder-led digital solutions brand focused on purposeful, clear and business-ready digital work.",
+    founder: "Founded by Tanmay Mukherjee · Founder, CraftVanta",
+    serviceEy: "WHAT WE CRAFT",
+    serviceTitle: "Digital work with a business purpose.",
+    services: [
+      ["01", "Websites", "Professional websites that build credibility and communicate value."],
+      ["02", "Landing Pages", "Focused digital experiences built around one clear objective."],
+      ["03", "Branding", "Logos, visual identity and brand systems that make businesses recognisable."],
+      ["04", "Digital Creatives", "Social creatives, banners, campaigns and promotional visuals."]
+    ],
+    processEy: "OUR METHOD",
+    processTitle: "IDEA → DESIGN → BUILD → GROW",
+    process: [
+      ["IDEA", "You bring the idea.", "We understand the business, audience and objective."],
+      ["DESIGN", "We shape the experience.", "Strategy becomes visual direction and structure."],
+      ["BUILD", "We make it real.", "Design becomes a responsive working solution."],
+      ["GROW", "We keep it moving.", "Your digital presence becomes a business asset."]
+    ],
+    workEy: "SELECTED WORK",
+    workTitle: "Real problems. Crafted solutions.",
+    workText: "A growing portfolio of websites, landing pages, brand systems and digital creative work.",
+    workCards: [
+      ["BUSINESS WEBSITE", "Digital presence", "Clean, credible website architecture built around a business story."],
+      ["LANDING PAGE", "Conversion experience", "A focused page designed to communicate one offer with clarity."],
+      ["BRAND & CREATIVE", "Visual system", "A coherent visual direction for social, campaigns and customer touchpoints."]
+    ],
+    advancedEy: "CUSTOM DIGITAL SOLUTIONS",
+    advancedTitle: "When the business needs more.",
+    advancedText: "Custom interfaces, automation workflows, AI-assisted experiences, data-driven systems and tailored digital operations can be added when required.",
+    principlesEy: "OUR PRINCIPLES",
+    principlesTitle: "How we work.",
+    principles: [
+      ["01", "Business Before Design", "Every design decision should have a purpose."],
+      ["02", "Clarity Before Complexity", "Simple experiences are easier to understand and use."],
+      ["03", "Purpose Before Trends", "We do not use a trend simply because it looks impressive."],
+      ["04", "Craft Before Compromise", "Details matter when your brand is on the line."],
+      ["05", "Build for Tomorrow", "Digital work should be useful today and ready to evolve tomorrow."]
+    ],
+    proofEy: "TRUSTED THROUGH THE WORK",
+    proofTitle: "No invented testimonials. No inflated claims.",
+    proofText: "Genuine client stories and verified outcomes will be added as they become available.",
+    ctaEy: "START A PROJECT",
+    ctaTitle: "Got an idea?",
+    ctaText: "Let's craft what's next.",
+    ctaBn: "আপনার Idea, এবার Digital হোক।",
+    contact: "Talk to CraftVanta",
+    footer: "Digital Solutions. Crafted for Business.",
+    footerLine: "Websites • Landing Pages • Branding • Digital Creatives",
+    language: "Language"
+  }
+} as const;
 
 export default function App() {
-  const [selectedPersona, setSelectedPersona] = useState<string>("default");
-  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
-  const { t, language, copyEmailToClipboard } = useLanguage();
-
-  const handleSelectPersona = (persona: string) => {
-    setSelectedPersona(persona);
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window === "undefined") return "en";
+    const saved = localStorage.getItem("preferred_lang") as Lang | null;
+    if (saved === "en" || saved === "bn" || saved === "hi") return saved;
+    const browser = (navigator.language || "").toLowerCase();
+    if (browser.startsWith("bn")) return "bn";
+    if (browser.startsWith("hi")) return "hi";
+    return "en";
+  });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const changeLanguage = (next: Lang) => {
+    setLang(next);
+    if (typeof window !== "undefined") localStorage.setItem("preferred_lang", next);
   };
+  const t = copy[lang];
 
-  const handleOpenBooking = () => {
-    setIsBookingOpen(true);
-  };
-
-  const handleCloseBooking = () => {
-    setIsBookingOpen(false);
-  };
+  const startUrl = "https://wa.me/918001195515?text=Hello%20CraftVanta%2C%20I%20would%20like%20to%20discuss%20a%20project.";
+  const mailUrl = "mailto:tanmay.mukherjee715@gmail.com?subject=CraftVanta%20Project%20Enquiry";
 
   return (
-    <div className="min-h-screen bg-[#0a101d] text-white selection:bg-gold-500 selection:text-gold-950 font-sans antialiased">
-      
-      {/* Brand Header */}
-      <Header onOpenBooking={handleOpenBooking} />
+    <div className="min-h-screen bg-[#07101d] text-white font-sans antialiased selection:bg-gold-400 selection:text-[#07101d]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#07101d]/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+          <a href="#hero" className="flex items-center">
+            <img
+              src="/craftvanta-logo.png"
+              alt="CraftVanta"
+              className="h-16 w-16 sm:h-16 sm:w-16 object-contain"
+            />
+          </a>
 
-      {/* Hero with Ocean visual & Persona Selector */}
-      <Hero onSelectPersona={handleSelectPersona} onOpenBooking={handleOpenBooking} />
+          <nav className="hidden items-center gap-7 lg:flex">
+            {[
+              ["#services", t.nav[0]],
+              ["#process", t.nav[1]],
+              ["#work", t.nav[2]],
+              ["#principles", t.nav[3]],
+              ["#contact", t.nav[4]]
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="text-[11px] uppercase tracking-[0.18em] text-slate-200 transition hover:text-gold-300">{label}</a>
+            ))}
+          </nav>
 
-      {/* Case Studies Section */}
-      <CaseStudies selectedPersona={selectedPersona} />
-
-      {/* Testimonials Section */}
-      <Testimonials selectedPersona={selectedPersona} />
-
-      {/* Principles Section */}
-      <Principles />
-
-      {/* Process Section */}
-      <Process />
-
-      {/* Sectors Section */}
-      <Sectors />
-
-      {/* Editorial Contact Section */}
-      <section id="contact" className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0a101d] to-slate-900 pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-gold-500/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center space-y-10">
-          
-          <div className="max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-[0.25em] font-mono text-gold-400 font-semibold">
-              {t.contact.eyebrow}
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white tracking-tight leading-tight">
-              {t.contact.title}
-            </h2>
-            <p className="text-slate-100 text-sm md:text-base font-light">
-              {t.contact.desc}
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-[#0d1a29] to-[#0a101d] border border-white/20 p-8 sm:p-10 rounded-3xl max-w-xl mx-auto space-y-6 shadow-2xl">
-            <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center mx-auto text-gold-400">
-              <Calendar className="w-6 h-6" />
+          <div className="flex items-center gap-2">
+            <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1">
+              {(["en", "bn", "hi"] as Lang[]).map((code) => (
+                <button key={code} onClick={() => changeLanguage(code)} className={`rounded-lg px-2.5 py-1 text-[10px] font-semibold transition ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200 hover:text-gold-300"}`}>
+                  {code === "bn" ? "বাং" : code.toUpperCase()}
+                </button>
+              ))}
             </div>
-            
-            <div className="space-y-2">
-              <h3 className="text-lg font-display font-medium text-white">{t.contact.cardTitle}</h3>
-              <p className="text-xs text-slate-100 font-light">
-                {t.contact.cardDesc}
-              </p>
-            </div>
-
-            <button
-              onClick={handleOpenBooking}
-              className="w-full inline-flex items-center justify-center space-x-2.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-gold-950 font-sans font-medium uppercase tracking-widest text-xs py-4.5 rounded-xl transition-all shadow-[0_4px_15px_rgba(209,165,60,0.15)]"
-            >
-              <span>{t.contact.ctaButton}</span>
-              <ArrowUpRight className="w-4 h-4" />
+            <a href={startUrl} target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gold-400 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[#07101d] transition hover:bg-gold-300">
+              <MessageCircle className="h-3.5 w-3.5" /> {t.start}
+            </a>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="rounded-xl border border-white/10 bg-white/5 p-2.5 lg:hidden" aria-label="Open menu">
+              <Menu className="h-4 w-4" />
             </button>
           </div>
-
         </div>
-      </section>
 
-      {/* Luxury Footer */}
-      <footer className="bg-[#050914] text-slate-100 py-16 border-t border-white/10 relative pb-32">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-white/10 pb-12 items-start">
-            
-            <div className="md:col-span-5 space-y-4">
-              <div className="flex items-center space-x-3">
-                <img src="/craftvanta-logo.png" alt="CraftVanta Logo" className="w-10 h-10 object-contain drop-shadow-lg" />
-                <span className="text-white font-display font-semibold text-sm">CraftVanta</span>
+        {menuOpen && (
+          <div className="border-t border-white/10 bg-[#07101d] px-5 py-4 lg:hidden">
+            <div className="flex flex-col gap-3">
+              {[
+                ["#services", t.nav[0]],
+                ["#process", t.nav[1]],
+                ["#work", t.nav[2]],
+                ["#principles", t.nav[3]],
+                ["#contact", t.nav[4]]
+              ].map(([href, label]) => (
+                <a key={href} href={href} onClick={() => setMenuOpen(false)} className="py-1 text-xs uppercase tracking-widest text-slate-200">{label}</a>
+              ))}
+              <div className="flex gap-2 pt-2 sm:hidden">
+                {(["en", "bn", "hi"] as Lang[]).map((code) => (
+                  <button key={code} onClick={() => changeLanguage(code)} className={`rounded-lg border border-white/10 px-3 py-1.5 text-[10px] ${lang === code ? "bg-gold-400 text-[#07101d]" : "text-slate-200"}`}>
+                    {code === "bn" ? "বাংলা" : code.toUpperCase()}
+                  </button>
+                ))}
               </div>
-              <p className="text-xs text-slate-100 max-w-sm leading-relaxed font-light">
-                {t.footer.studioDesc}
-              </p>
             </div>
-
-            <div className="md:col-span-3 space-y-3 text-xs">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-gold-400">{t.footer.channels}</span>
-              <p className="font-sans font-light">Email: <button onClick={() => copyEmailToClipboard("tanmay.mukherjee715@gmail.com")} className="text-white hover:text-gold-400 transition-colors text-left focus:outline-none font-medium">tanmay.mukherjee715@gmail.com</button></p>
-              <p className="font-sans font-light">WhatsApp: <a href="https://wa.me/918001195515" target="_blank" rel="noreferrer" className="text-white hover:text-gold-400 transition-colors font-medium">{t.footer.chatPortal}</a></p>
-            </div>
-
-            <div className="md:col-span-4 space-y-3 text-xs">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-gold-400">{t.footer.commitmentTitle}</span>
-              <p className="font-sans font-light leading-relaxed text-slate-100">
-                {t.footer.commitmentDesc}
-              </p>
-            </div>
-
           </div>
+        )}
+      </header>
 
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 gap-4 text-xs">
-            <p className="font-sans font-light text-slate-100">
-              &copy; {new Date().getFullYear()} CraftVanta. {t.footer.copyright}
-            </p>
-            <div className="flex items-center space-x-1 text-slate-200">
-              <span>{t.footer.craftedWith}</span>
-              <Heart className="w-3 h-3 text-red-500 fill-red-500 animate-pulse" />
-              <span>{language === "bn" ? "আন্তর্জাতিক পারফরম্যান্সের জন্য।" : (language === "hi" ? "अंतरराष्ट्रीय प्रदर्शन के लिए।" : "for international performance.")}</span>
+      <main>
+        <section id="hero" className="relative flex min-h-[760px] items-center overflow-hidden border-b border-white/10 pt-28">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(209,165,60,0.14),transparent_30%),radial-gradient(circle_at_15%_75%,rgba(13,148,136,0.10),transparent_30%)]" />
+          <div className="absolute right-[-12%] top-[18%] h-[520px] w-[520px] rounded-full border border-gold-400/10 bg-gold-400/[0.025] blur-sm" />
+          <div className="relative mx-auto grid max-w-7xl gap-16 px-5 py-24 lg:grid-cols-12 lg:px-8">
+            <div className="lg:col-span-8">
+              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/10 px-4 py-2">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold-300" />
+                <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-gold-300">{t.eyebrow}</span>
+              </div>
+              <h1 className="max-w-5xl font-serif text-5xl leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-8xl">
+                {t.hero}
+              </h1>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">{t.heroText}</p>
+              <div className="mt-8 text-sm font-semibold tracking-wide text-gold-300">{t.servicesLine}</div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={startUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-xl bg-gold-400 px-6 py-4 text-xs font-bold uppercase tracking-widest text-[#07101d] shadow-[0_12px_40px_rgba(209,165,60,0.18)] transition hover:bg-gold-300">
+                  {t.start} <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <a href="#work" className="inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-xs font-semibold uppercase tracking-widest text-white transition hover:border-gold-400/50 hover:text-gold-300">
+                  {t.work} <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="mt-12 flex items-center gap-4">
+                <div className="h-px w-12 bg-gold-400" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-300">{t.processLine}</span>
+              </div>
             </div>
+
+            <div className="lg:col-span-4">
+              <div className="relative min-h-[430px] overflow-hidden rounded-[28px] border border-white/10 bg-[#0b1624] shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85"
+                  alt="CraftVanta digital studio workspace"
+                  referrerPolicy="no-referrer"
+                  className="absolute inset-0 h-full w-full object-cover opacity-75"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07101d] via-[#07101d]/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <Globe2 className="mb-10 h-7 w-7 text-gold-300" />
+                  <div className="font-serif text-2xl leading-tight text-white">Digital presence should feel like your business—not a template.</div>
+                  <div className="mt-5 h-px w-full bg-white/20" />
+                  <div className="mt-4 text-xs leading-6 text-slate-200">Founder-led. Purposeful. Crafted around the work that matters.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="who" className="bg-slate-50 py-24 text-slate-950 lg:py-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-7">
+                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-700">{t.whoEy}</div>
+                <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight tracking-tight sm:text-5xl">{t.whoTitle}</h2>
+              </div>
+              <div className="lg:col-span-5">
+                <p className="text-base leading-8 text-slate-600">{t.whoText}</p>
+                <p className="mt-5 text-sm font-semibold text-slate-900">{t.founder}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="bg-slate-50 pb-28 text-slate-950">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="mb-12 max-w-2xl">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-700">{t.serviceEy}</div>
+              <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">{t.serviceTitle}</h2>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              {t.services.map(([num, title, desc]) => (
+                <article key={num} className="group rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-gold-300">
+                  <div className="flex items-start justify-between">
+                    <span className="font-mono text-xs font-bold tracking-widest text-gold-700">{num}</span>
+                    <ArrowUpRight className="h-5 w-5 text-slate-300 transition group-hover:text-gold-600" />
+                  </div>
+                  <h3 className="mt-12 font-serif text-3xl">{title}</h3>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600">{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="process" className="bg-[#0a101d] py-28">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="max-w-3xl">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-300">{t.processEy}</div>
+              <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-6xl">{t.processTitle}</h2>
+            </div>
+            <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
+              {t.process.map(([label, title, desc]) => (
+                <article key={label} className="bg-[#0b1624] p-7">
+                  <div className="font-mono text-xs font-bold tracking-[0.22em] text-gold-300">{label}</div>
+                  <h3 className="mt-10 font-display text-xl font-semibold">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="bg-slate-50 py-28 text-slate-950">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+              <div className="max-w-2xl">
+                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-700">{t.workEy}</div>
+                <h2 className="mt-4 font-serif text-4xl sm:text-5xl">{t.workTitle}</h2>
+              </div>
+              <p className="max-w-md text-sm leading-7 text-slate-600">{t.workText}</p>
+            </div>
+            <div className="mt-14 grid gap-5 lg:grid-cols-3">
+              {t.workCards.map(([tag, title, desc], i) => {
+                const images = [
+                  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85",
+                  "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85",
+                  "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=85"
+                ];
+                return (
+                  <article key={tag} className="group relative min-h-[430px] overflow-hidden rounded-3xl border border-slate-200 bg-[#0a101d] text-white shadow-xl">
+                    <img
+                      src={images[i]}
+                      alt={title}
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07101d] via-[#07101d]/45 to-transparent" />
+                    <div className="relative flex h-full flex-col justify-between p-7">
+                      <div>
+                        <div className="font-mono text-[10px] tracking-[0.2em] text-gold-300">{tag}</div>
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-3xl">{title}</h3>
+                        <p className="mt-4 text-sm leading-7 text-slate-200">{desc}</p>
+                        <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold-300">
+                          Studio concept <ArrowUpRight className="h-4 w-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#0a101d] py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
+            <div className="lg:col-span-5">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-300">{t.advancedEy}</div>
+              <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">{t.advancedTitle}</h2>
+            </div>
+            <div className="lg:col-span-7 lg:pt-7">
+              <p className="text-base leading-8 text-slate-300">{t.advancedText}</p>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Custom Interfaces", "Automation", "AI-assisted Experiences", "Data Systems", "Digital Operations"].map((x) => (
+                  <span key={x} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-200">{x}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="principles" className="bg-[#07101d] py-28">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="max-w-2xl">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-300">{t.principlesEy}</div>
+              <h2 className="mt-4 font-serif text-4xl sm:text-5xl">{t.principlesTitle}</h2>
+            </div>
+            <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {t.principles.map(([num, title, desc]) => (
+                <article key={num} className="rounded-2xl border border-white/10 bg-white/[0.035] p-7">
+                  <div className="font-mono text-xs font-bold tracking-widest text-gold-300">PRINCIPLE {num}</div>
+                  <h3 className="mt-7 font-display text-xl font-semibold">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{desc}</p>
+                </article>
+              ))}
+              <article className="rounded-2xl border border-gold-400/30 bg-gold-400/[0.07] p-7">
+                <Sparkles className="h-6 w-6 text-gold-300" />
+                <h3 className="mt-7 font-display text-xl font-semibold">{t.proofTitle}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{t.proofText}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="bg-slate-50 py-28 text-slate-950">
+          <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
+            <div className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-gold-700">{t.ctaEy}</div>
+            <h2 className="mt-5 font-serif text-5xl sm:text-7xl">{t.ctaTitle}</h2>
+            <p className="mt-4 text-2xl font-serif text-slate-600">{t.ctaText}</p>
+            <p className="mt-5 text-lg font-semibold text-slate-900">{t.ctaBn}</p>
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <a href={startUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-xl bg-[#0a101d] px-6 py-4 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-gold-700">
+                <MessageCircle className="h-4 w-4" /> {t.contact}
+              </a>
+              <a href={mailUrl} className="inline-flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-900 transition hover:border-gold-500">
+                <Mail className="h-4 w-4" /> Email
+              </a>
+              <a href="tel:+918001195515" className="inline-flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-900 transition hover:border-gold-500">
+                <Phone className="h-4 w-4" /> 8001195515
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-white/10 bg-[#050914] py-12">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 lg:flex-row lg:items-end lg:justify-between lg:px-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-14 w-14 object-contain" />
+              <span className="font-display font-semibold">CraftVanta</span>
+            </div>
+            <p className="mt-4 text-sm text-slate-300">{t.footer}</p>
+            <p className="mt-2 text-xs text-slate-500">{t.footerLine}</p>
+          </div>
+          <div className="text-left text-xs text-slate-400 lg:text-right">
+            <p>Founder: Tanmay Mukherjee</p>
+            <p className="mt-1">Durgapur, West Bengal, India</p>
+            <p className="mt-1">© {new Date().getFullYear()} CraftVanta</p>
           </div>
         </div>
       </footer>
 
-      {/* Auto-detected language notification toast */}
-      <LanguageToast />
-
-      {/* Floating AI chat assistant widget */}
-      <AIChatWidget />
-
-      {/* Floating Persistant Contact/Booking Bar (Bottom) */}
-      <ContactBar onOpenBooking={handleOpenBooking} />
-
-      {/* Interactive Booking/Scheduling Modal */}
-      <CustomContactModal
-        isOpen={isBookingOpen}
-        onClose={handleCloseBooking}
-        initialPersona={selectedPersona}
-      />
-
+      <a href={startUrl} target="_blank" rel="noreferrer" aria-label="Chat with CraftVanta on WhatsApp" className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gold-400 text-[#07101d] shadow-[0_12px_35px_rgba(209,165,60,0.3)] transition hover:scale-105 hover:bg-gold-300">
+        <MessageCircle className="h-6 w-6" />
+      </a>
     </div>
   );
 }
