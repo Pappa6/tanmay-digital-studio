@@ -6,8 +6,8 @@ type Lang = "en" | "bn" | "hi";
 const copy = {
   en: {
     nav: ["Services", "Process", "Work", "Principles", "Contact"],
-    eyebrow: "DIGITAL SOLUTIONS. CRAFTED FOR BUSINESS.",
-    hero: "Your idea, now digital.",
+    eyebrow: "FOUNDER-LED DIGITAL STUDIO",
+    hero: "Digital Solutions. Crafted for Business.",
     heroText: "CraftVanta helps businesses turn ideas into professional digital experiences—through websites, landing pages, branding and digital creatives.",
     servicesLine: "Websites • Landing Pages • Branding • Digital Creatives",
     processLine: "IDEA → DESIGN → BUILD → GROW",
@@ -205,7 +205,7 @@ export default function App() {
             <img
               src="/craftvanta-logo.png"
               alt="CraftVanta"
-              className="h-14 w-auto max-w-[220px] object-contain"
+              className="h-16 w-auto max-w-[250px] object-contain"
             />
           </a>
 
