@@ -33,8 +33,8 @@ jobs:
 
       - name: Capture desktop and mobile previews
         run: |
-          npx playwright screenshot --device="Desktop Chrome" --full-page http://127.0.0.1:4173/ craftvanta-desktop.png
-          npx playwright screenshot --device="iPhone 13" --full-page http://127.0.0.1:4173/ craftvanta-mobile.png
+          npx playwright screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/ craftvanta-desktop.png
+          npx playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173/ craftvanta-mobile.png
 
       - name: Upload visual previews
         uses: actions/upload-artifact@v4
