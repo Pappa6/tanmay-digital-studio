@@ -205,7 +205,7 @@ export default function App() {
             <img
               src="/craftvanta-logo.png"
               alt="CraftVanta"
-              className="h-16 w-auto max-w-[250px] object-contain"
+              className="h-14 w-14 sm:h-16 sm:w-16 object-contain"
             />
           </a>
 
