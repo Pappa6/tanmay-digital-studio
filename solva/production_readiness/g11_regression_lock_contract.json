@@ -1,0 +1,30 @@
+{
+  "version":"1.0",
+  "gate":"G11",
+  "name":"Regression Lock",
+  "status":"IMPLEMENTED",
+  "purpose":"Prevent release after previously discovered safety, truth, recovery, authority or integrity defects regress.",
+  "principles":[
+    "every_discovered_critical_defect_becomes_a_repeatable_test",
+    "critical_controls_are_regression_locked",
+    "unknown_is_not_pass",
+    "release_requires_zero_unresolved_critical_regressions",
+    "test_evidence_is_version_and_environment_bound"
+  ],
+  "coverage_domains":[
+    "truth_and_evidence",
+    "sentinel_and_authority",
+    "credential_and_secret_isolation",
+    "prompt_injection",
+    "identity_and_target_binding",
+    "approval_binding",
+    "idempotency_and_replay",
+    "ambiguous_provider_state",
+    "audit_integrity",
+    "restart_and_recovery",
+    "outcome_assurance",
+    "operational_fail_closed"
+  ],
+  "release_rule":"G11 passes only when every applicable critical regression test has a preserved PASS result for the exact candidate version and intended environment; FAIL or UNKNOWN blocks release.",
+  "note":"This contract establishes the lock. It does not by itself prove the complete regression suite has been executed."
+}
