@@ -377,8 +377,13 @@ export default function App() {
     <div className="min-h-screen bg-[#07101d] text-white antialiased selection:bg-[#d7a84b] selection:text-[#07101d]">
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#07101d]/95 backdrop-blur-xl border-b border-white/10 py-2" : "bg-[#07101d]/85 backdrop-blur-md py-2"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <button onClick={() => navTo("hero")} className="flex h-[76px] w-[126px] sm:h-[86px] sm:w-[142px] items-center justify-center overflow-hidden" aria-label="CraftVanta home">
-            <img src="/craftvanta-master.jpg" alt="CraftVanta" className="h-full w-full object-contain" />
+          <button onClick={() => navTo("hero")} className="flex h-[64px] w-[248px] items-center gap-2 overflow-hidden" aria-label="CraftVanta home">
+            <span className="relative h-[62px] w-[62px] shrink-0 overflow-hidden">
+              <img src="/craftvanta-master.jpg" alt="" aria-hidden="true" className="absolute left-[-25px] top-[-4px] h-[112px] w-[112px] max-w-none" />
+            </span>
+            <span className="relative h-[44px] w-[172px] shrink-0 overflow-hidden">
+              <img src="/craftvanta-master.jpg" alt="CraftVanta" className="absolute left-0 top-[-112px] h-[172px] w-[172px] max-w-none" />
+            </span>
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
