@@ -610,9 +610,12 @@ export default function App() {
             <h2 className="mt-4 font-serif text-5xl leading-tight sm:text-7xl">{t.cta.title}<br/><span className="text-white">{t.cta.title2}</span></h2>
             <p className="mt-5 text-lg font-medium">{t.cta.bn}</p>
             <button onClick={startProject} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#07101d] px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white hover:bg-[#13263a] transition">{t.cta.button}<ArrowUpRight className="h-4 w-4"/></button>
-            <div className="mt-7 flex justify-center gap-3">
-              <a href="https://wa.me/918001195515" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><MessageCircle className="h-4 w-4 text-emerald-600"/>{t.cta.whatsapp}</a>
-              <a href="tel:+918001195515" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><Phone className="h-4 w-4"/>{t.cta.call}</a>
+            <div className="mt-7 flex flex-col items-center gap-3">
+              <div className="flex justify-center gap-3">
+                <a href="https://wa.me/918001195515" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><MessageCircle className="h-4 w-4 text-emerald-600"/>{t.cta.whatsapp}</a>
+                <a href="tel:+918001195515" className="inline-flex items-center gap-2 rounded-xl border border-[#07101d]/20 bg-white/20 px-4 py-2 text-xs font-semibold"><Phone className="h-4 w-4"/>{t.cta.call}</a>
+              </div>
+              <a href="tel:+918001195515" className="text-sm font-semibold tracking-[0.12em] text-[#07101d]">Call / WhatsApp&nbsp;&nbsp; 8001195515</a>
             </div>
           </div>
         </section>
