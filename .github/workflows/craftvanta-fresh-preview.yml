@@ -1,6 +1,8 @@
 name: CraftVanta Fresh Preview
 
 on:
+  push:
+    branches: [craftvanta-fresh-v1]
   workflow_dispatch:
 
 jobs:
