@@ -205,7 +205,7 @@ export default function App() {
             <img
               src="/craftvanta-logo.png"
               alt="CraftVanta"
-              className="h-11 w-auto max-w-[190px] object-contain"
+              className="h-14 w-auto max-w-[220px] object-contain"
             />
           </a>
 
@@ -450,7 +450,7 @@ export default function App() {
         <div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 lg:flex-row lg:items-end lg:justify-between lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-9 w-9 object-contain" />
+              <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-12 w-12 object-contain" />
               <span className="font-display font-semibold">CraftVanta</span>
             </div>
             <p className="mt-4 text-sm text-slate-300">{t.footer}</p>
