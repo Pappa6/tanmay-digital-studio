@@ -1,0 +1,50 @@
+name: CraftVanta Fresh Preview
+
+on:
+  workflow_dispatch:
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm install
+      - run: npm run build
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Start preview server
+        run: |
+          npx vite preview --host 0.0.0.0 --port 4173 > /tmp/craftvanta-vite.log 2>&1 &
+          sleep 5
+
+      - name: Capture desktop and mobile previews
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async() => {
+            const browser = await chromium.launch({headless:true});
+            const desktop = await browser.newPage({viewport:{width:1440,height:1000}, deviceScaleFactor:1});
+            await desktop.goto('http://127.0.0.1:4173/tanmay-digital-studio/', {waitUntil:'networkidle'});
+            await desktop.screenshot({path:'craftvanta-desktop.png', fullPage:true});
+
+            const mobile = await browser.newPage({viewport:{width:390,height:844}, deviceScaleFactor:1});
+            await mobile.goto('http://127.0.0.1:4173/tanmay-digital-studio/', {waitUntil:'networkidle'});
+            await mobile.screenshot({path:'craftvanta-mobile.png', fullPage:true});
+
+            await browser.close();
+          })();
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: craftvanta-fresh-preview
+          path: |
+            craftvanta-desktop.png
+            craftvanta-mobile.png
