@@ -201,12 +201,12 @@ export default function App() {
     <div className="min-h-screen bg-[#07101d] text-white font-sans antialiased selection:bg-gold-400 selection:text-[#07101d]">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#07101d]/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#hero" className="flex items-center gap-3">
-            <img src="/craftvanta-logo.png" alt="CraftVanta" className="h-10 w-10 object-contain" />
-            <div>
-              <div className="font-display text-sm font-semibold tracking-wide">CraftVanta</div>
-              <div className="font-mono text-[8px] uppercase tracking-[0.28em] text-gold-300">Digital Solutions</div>
-            </div>
+          <a href="#hero" className="flex items-center">
+            <img
+              src="/craftvanta-logo.png"
+              alt="CraftVanta"
+              className="h-11 w-auto max-w-[190px] object-contain"
+            />
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex">
