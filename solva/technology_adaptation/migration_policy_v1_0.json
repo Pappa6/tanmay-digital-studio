@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "status": "IMPLEMENTED_POLICY",
+  "migration_modes": ["SHADOW","CONTROLLED_CANARY","PROMOTE","ROLLBACK"],
+  "automatic_allowed_when": [
+    "capability_boundary_is_unchanged",
+    "pre_authorized_policy_allows_migration",
+    "candidate_passes_required_evaluation",
+    "rollback_target_is_available",
+    "Sentinel_is_available",
+    "audit_is_available"
+  ],
+  "human_release_required_when": [
+    "authority_scope_changes",
+    "security_or_privacy_boundary_changes",
+    "identity_or_credential_model_changes",
+    "legal_or_financial_commitment_boundary_changes",
+    "policy_or_mission_changes"
+  ],
+  "fail_closed_conditions": ["unknown_evidence","missing_rollback","sentinel_unavailable","audit_unavailable","identity_ambiguous","material_regression"],
+  "principle": "NEWER_DOES_NOT_MEAN_BETTER"
+}
