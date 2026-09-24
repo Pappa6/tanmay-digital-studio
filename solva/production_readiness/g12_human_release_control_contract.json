@@ -1,0 +1,30 @@
+{
+  "version":"1.0",
+  "gate":"G12",
+  "name":"Human Release Control",
+  "status":"IMPLEMENTED",
+  "purpose":"Require explicit, attributable human authorization before production promotion.",
+  "approval_requirements":[
+    "approver_identity",
+    "candidate_version",
+    "scope",
+    "intended_environment",
+    "evidence_bundle_reference",
+    "known_unknowns",
+    "known_limitations",
+    "rollback_or_stop_plan",
+    "approval_timestamp",
+    "explicit_approval_action"
+  ],
+  "binding_rule":"Approval is valid only for the exact candidate version, scope and intended environment stated in the approval record.",
+  "prohibitions":[
+    "approval_from_silence",
+    "inferred_approval",
+    "approval_for_different_version",
+    "approval_for_different_scope",
+    "approval_when_critical_gate_is_unknown_or_failed"
+  ],
+  "release_rule":"Production promotion is blocked unless all applicable critical gates are PASS and an explicit human approval record is preserved and bound to the release candidate.",
+  "revocation_rule":"A release approval becomes invalid if the candidate version, scope, policy, authority, connector identity or other approval-bearing parameter changes.",
+  "status_note":"Implementation of this contract is not evidence of an actual production approval."
+}

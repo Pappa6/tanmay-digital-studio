@@ -1,0 +1,50 @@
+{
+  "version":"1.0",
+  "gate":"G09",
+  "name":"Operations and Observability",
+  "status":"DESIGNED",
+  "purpose":"Make SOLVA operationally observable, fail-closed, recoverable and continuously testable without increasing authority.",
+  "required_controls":[
+    "liveness_check",
+    "readiness_check",
+    "dependency_health",
+    "queue_depth_and_age",
+    "task_latency",
+    "error_rate",
+    "retry_rate",
+    "approval_expiry_tracking",
+    "connector_failure_tracking",
+    "audit_integrity_alerting",
+    "security_event_alerting",
+    "policy_denial_metrics",
+    "unknown_state_metrics",
+    "stale_worker_detection",
+    "idempotency_conflict_metrics",
+    "incident_escalation",
+    "rate_limits",
+    "circuit_breakers",
+    "backpressure",
+    "safe_shutdown",
+    "restart_recovery",
+    "configuration_drift_detection"
+  ],
+  "critical_alerts":[
+    "sentinel_bypass_attempt",
+    "credential_exposure_attempt",
+    "audit_integrity_failure",
+    "unauthorized_external_write_attempt",
+    "authority_parameter_drift",
+    "repeated_ambiguous_provider_state",
+    "persistent_unknown_critical_state",
+    "recovery_failure"
+  ],
+  "fail_closed_conditions":[
+    "audit_unavailable_for_consequential_action",
+    "sentinel_unavailable_for_consequential_action",
+    "policy_unavailable_for_consequential_action",
+    "identity_state_ambiguous_for_external_action",
+    "configuration_integrity_uncertain",
+    "credential_state_uncertain"
+  ],
+  "promotion_rule":"G09 cannot pass until controls are implemented, exercised under failure, monitored in the intended runtime, and backed by preserved evidence."
+}

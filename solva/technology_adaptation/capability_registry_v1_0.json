@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "status": "IMPLEMENTED_REGISTRY",
+  "registry_purpose": "Track current, candidate and rollback technologies by capability without coupling SOLVA core logic to a vendor.",
+  "capabilities": [
+    {"capability":"reasoning","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"multilingual","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"web_research","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"image_generation","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"video_generation","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"document_generation","current":null,"candidate":null,"backup":null,"status":"UNBOUND"},
+    {"capability":"data_analysis","current":null,"candidate":null,"backup":null,"status":"UNBOUND"}
+  ],
+  "required_evidence": ["provider_identity","version","capability_contract","evaluation_results","cost_evidence","reliability_evidence","security_evidence","rollback_target"],
+  "rule": "NO_PROVIDER_IS_MARKED_PRODUCTION_CURRENT_UNLESS_EVIDENCE_IS_PRESERVED"
+}
