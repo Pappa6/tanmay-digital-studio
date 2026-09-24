@@ -2,6 +2,8 @@ name: SOLVA MILC Adversarial Runtime Tests
 on:
   push:
     branches: [solva-trust-hardening-v1]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 jobs:
   milc:
