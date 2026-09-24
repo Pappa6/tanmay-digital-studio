@@ -1,0 +1,35 @@
+{
+  "version":"1.0",
+  "status":"IMPLEMENTED_PLAN",
+  "objective":"Move SOLVA from controlled engineering into a bounded real-world employment pilot for Tanmay.",
+  "stages":[
+    {"id":"A","name":"INTENDED_CONNECTOR","required":["zoho_mail_connected_and_identity_verified"]},
+    {"id":"B","name":"RUNTIME_ASSURANCE","required":["g09_intended_runtime_controls","g08_connector_matrix_executed"]},
+    {"id":"C","name":"OUTCOME_PILOT","required":["real_customer_or_prospect_workflow","independent_outcome_evidence","expected_vs_actual_comparison"]},
+    {"id":"D","name":"REGRESSION_LOCK","required":["all_applicable_critical_regressions_pass_for_exact_candidate"]},
+    {"id":"E","name":"RELEASE_CONTROL","required":["explicit_g12_approval","rollback_plan","known_unknowns_recorded"]},
+    {"id":"F","name":"CONTROLLED_EMPLOYMENT","required":["bounded_work_missions","routine_autonomy_policy","escalation_policy","audit_enabled"]}
+  ],
+  "initial_employment_scope":[
+    "public_business_research",
+    "prospect_discovery",
+    "business_and_digital_diagnosis",
+    "drafting_routine_customer_communications",
+    "autonomous_routine_replies_only_where_pre_authorized",
+    "proposal_and_demo_preparation",
+    "research_reports",
+    "data_analysis",
+    "creative_concepts_and_assets"
+  ],
+  "initially_restricted":[
+    "binding_legal_commitments",
+    "unapproved_major_financial_commitments",
+    "credential_access",
+    "authority_policy_changes",
+    "sentinel_changes",
+    "security_boundary_changes",
+    "final_delivery where existing approval policy requires Tanmay approval"
+  ],
+  "principle":"AUTONOMY_FIRST_WHERE_AUTHORITY_IS_PREAUTHORIZED; ESCALATE_ONLY_WHEN_AUTHORITY_IS_ACTUALLY_REQUIRED",
+  "promotion_rule":"NO_PRODUCTION_EMPLOYMENT_CLAIM_UNTIL_REQUIRED_GATES_HAVE_PRESERVED_EVIDENCE"
+}
