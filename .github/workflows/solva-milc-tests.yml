@@ -13,4 +13,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pytest solva/communication/tests/test_milc_v1_0_contract.py solva/communication/tests/test_milc_adversarial_matrix.py -q
+      - run: python -m pytest solva/communication/tests/test_milc_v1_0_contract.py solva/communication/tests/test_milc_adversarial_matrix.py solva/communication/tests/test_milc_runtime_policy.py solva/communication/tests/test_milc_authority_sentinel_integration_matrix.py -q
