@@ -1,0 +1,30 @@
+{
+  "version":"1.0",
+  "purpose":"Representative model-in-the-loop smoke evaluation for SOLVA MILC across all 22 Eighth Schedule languages.",
+  "warning":"Stimuli are engineering test examples, not native-speaker certification. Native-speaker validation is required before production claims.",
+  "task":"For each message, identify language, script, customer intent, and whether a routine reply may proceed if authority policy otherwise allows.",
+  "cases":[
+    {"id":"LM01","language":"Assamese","script":"Bengali-Assamese","message":"আপোনালোকৰ কোম্পানীয়ে কি সেৱা আগবঢ়ায়?","intent":"asks what services the company offers"},
+    {"id":"LM02","language":"Bengali","script":"Bengali","message":"আপনাদের কোম্পানি কী কী পরিষেবা দেয়?","intent":"asks what services the company offers"},
+    {"id":"LM03","language":"Gujarati","script":"Gujarati","message":"તમારી કંપની કઈ સેવાઓ આપે છે?","intent":"asks what services the company offers"},
+    {"id":"LM04","language":"Hindi","script":"Devanagari","message":"आपकी कंपनी कौन-कौन सी सेवाएँ देती है?","intent":"asks what services the company offers"},
+    {"id":"LM05","language":"Kannada","script":"Kannada","message":"ನಿಮ್ಮ ಕಂಪನಿ ಯಾವ ಸೇವೆಗಳನ್ನು ನೀಡುತ್ತದೆ?","intent":"asks what services the company offers"},
+    {"id":"LM06","language":"Kashmiri","script":"Perso-Arabic","message":"تُہۍ کمپنی کِنٛہِ خٲطرٕ سروس دِوان؟","intent":"asks what services the company offers"},
+    {"id":"LM07","language":"Konkani","script":"Devanagari","message":"तुमची कंपनी कोणकोणती सेवा दिता?","intent":"asks what services the company offers"},
+    {"id":"LM08","language":"Malayalam","script":"Malayalam","message":"നിങ്ങളുടെ കമ്പനി എന്തെല്ലാം സേവനങ്ങൾ നൽകുന്നു?","intent":"asks what services the company offers"},
+    {"id":"LM09","language":"Manipuri","script":"Meitei Mayek","message":"ꯅꯍꯥꯛꯀꯤ ꯀꯝꯄꯥꯅꯤꯅ ꯀꯩꯁꯤ ꯁꯦꯕꯥ ꯄꯤꯕꯒꯦ?","intent":"asks what services the company offers"},
+    {"id":"LM10","language":"Marathi","script":"Devanagari","message":"तुमची कंपनी कोणत्या सेवा देते?","intent":"asks what services the company offers"},
+    {"id":"LM11","language":"Nepali","script":"Devanagari","message":"तपाईंको कम्पनीले के कस्ता सेवाहरू प्रदान गर्छ?","intent":"asks what services the company offers"},
+    {"id":"LM12","language":"Odia","script":"Odia","message":"ଆପଣଙ୍କ କମ୍ପାନୀ କେଉଁ ସେବାଗୁଡ଼ିକ ଦିଏ?","intent":"asks what services the company offers"},
+    {"id":"LM13","language":"Punjabi","script":"Gurmukhi","message":"ਤੁਹਾਡੀ ਕੰਪਨੀ ਕਿਹੜੀਆਂ ਸੇਵਾਵਾਂ ਦਿੰਦੀ ਹੈ?","intent":"asks what services the company offers"},
+    {"id":"LM14","language":"Sanskrit","script":"Devanagari","message":"भवतः संस्था कानि सेवाः प्रददाति?","intent":"asks what services the company offers"},
+    {"id":"LM15","language":"Sindhi","script":"Perso-Arabic","message":"اوهان جي ڪمپني ڪهڙيون خدمتون ڏئي ٿي؟","intent":"asks what services the company offers"},
+    {"id":"LM16","language":"Tamil","script":"Tamil","message":"உங்கள் நிறுவனம் என்னென்ன சேவைகளை வழங்குகிறது?","intent":"asks what services the company offers"},
+    {"id":"LM17","language":"Telugu","script":"Telugu","message":"మీ కంపెనీ ఏ సేవలను అందిస్తుంది?","intent":"asks what services the company offers"},
+    {"id":"LM18","language":"Urdu","script":"Perso-Arabic","message":"آپ کی کمپنی کون سی خدمات فراہم کرتی ہے؟","intent":"asks what services the company offers"},
+    {"id":"LM19","language":"Bodo","script":"Devanagari","message":"नोंथांनि कम्पनीआ माबोरै सेवा होयो?","intent":"asks what services the company offers"},
+    {"id":"LM20","language":"Santali","script":"Ol Chiki","message":"ᱟᱢᱟᱜ ᱠᱚᱢᱯᱟᱱᱤ ᱚᱠᱟ ᱥᱮᱵᱟ ᱮᱢ ᱫᱟᱹᱲᱟᱭᱟ?","intent":"asks what services the company offers"},
+    {"id":"LM21","language":"Maithili","script":"Devanagari","message":"अहाँक कम्पनी कोन-कोन सेवा दैत अछि?","intent":"asks what services the company offers"},
+    {"id":"LM22","language":"Dogri","script":"Devanagari","message":"तुआढ़ी कंपनी केह्ड़ियां सेवां दिंदी ऐ?","intent":"asks what services the company offers"}
+  ]
+}
