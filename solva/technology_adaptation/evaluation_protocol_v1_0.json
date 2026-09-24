@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "status": "IMPLEMENTED_PROTOCOL",
+  "workflow": ["BASELINE","CANDIDATE_TEST","SHADOW_COMPARISON","EVIDENCE_REVIEW","DECISION"],
+  "baseline_required": true,
+  "comparison_must_use_equivalent_workloads": true,
+  "dimensions": ["quality","accuracy","latency","cost","reliability","security","privacy","compatibility","customer_outcome"],
+  "critical_failure": ["authority_change","sentinel_bypass","secret_exposure","identity_mismatch","audit_tamper","unsafe_external_write"],
+  "decision_states": ["RETAIN_CURRENT","PROMOTE_CANDIDATE","ROLLBACK","FREEZE_AND_ESCALATE"],
+  "promotion_requires": ["candidate_evidence","no_critical_failure","policy_compatibility","rollback_target","release_gate"],
+  "mock_or_synthetic_results_never_equal_production_evidence": true
+}
