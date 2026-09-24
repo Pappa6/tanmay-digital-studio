@@ -1,0 +1,14 @@
+name: SOLVA MILC Adversarial Runtime Tests
+on:
+  push:
+    branches: [solva-trust-hardening-v1]
+  workflow_dispatch:
+jobs:
+  milc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pytest solva/communication/tests/test_milc_v1_0_contract.py solva/communication/tests/test_milc_adversarial_matrix.py -q
