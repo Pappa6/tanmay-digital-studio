@@ -1,0 +1,49 @@
+name: SOLVA MILC Model Evaluation (Provider-Gated)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'solva/communication/model_eval/**'
+      - 'solva/communication/tests/milc_model_eval_corpus_v1_0.json'
+      - '.github/workflows/solva-milc-model-eval.yml'
+
+jobs:
+  model-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate model-eval assets
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          corpus = json.loads(Path('solva/communication/tests/milc_model_eval_corpus_v1_0.json').read_text())
+          assert len(corpus['cases']) == 22
+          assert all(c['id'].startswith('LM') for c in corpus['cases'])
+          print('MODEL_EVAL_CORPUS_READY: 22 cases')
+          PY
+      - name: Require explicit provider configuration
+        env:
+          SOLVA_MODEL_PROVIDER: ${{ vars.SOLVA_MODEL_PROVIDER }}
+          SOLVA_MODEL_ENDPOINT: ${{ vars.SOLVA_MODEL_ENDPOINT }}
+        run: |
+          if [ -z "$SOLVA_MODEL_PROVIDER" ] || [ -z "$SOLVA_MODEL_ENDPOINT" ]; then
+            echo "MODEL_EVAL_STATUS=UNKNOWN_NO_PROVIDER"
+            echo "No model provider/endpoint is configured."
+            echo "This workflow intentionally does not manufacture model results."
+            exit 0
+          fi
+          echo "MODEL_EVAL_STATUS=PROVIDER_CONFIGURED"
+          echo "Provider: $SOLVA_MODEL_PROVIDER"
+          echo "Endpoint configured: yes"
+      - name: Block unimplemented live execution
+        if: ${{ vars.SOLVA_MODEL_PROVIDER != '' && vars.SOLVA_MODEL_ENDPOINT != '' }}
+        run: |
+          echo "LIVE_MODEL_EXECUTION_STATUS=NOT_IMPLEMENTED"
+          echo "Provider configuration exists, but no provider-specific adapter is installed."
+          echo "Do not claim a model-evaluation PASS."
+          exit 1
