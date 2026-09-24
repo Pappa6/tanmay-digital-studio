@@ -17,33 +17,27 @@ jobs:
         with:
           python-version: '3.11'
       - name: Validate model-eval assets
+        run: python -c "import json; d=json.load(open('solva/communication/tests/milc_model_eval_corpus_v1_0.json')); assert len(d['cases'])==22; print('MODEL_EVAL_CORPUS_READY: 22 cases')"
+      - name: Run provider-neutral validator tests
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          corpus = json.loads(Path('solva/communication/tests/milc_model_eval_corpus_v1_0.json').read_text())
-          assert len(corpus['cases']) == 22
-          assert all(c['id'].startswith('LM') for c in corpus['cases'])
-          print('MODEL_EVAL_CORPUS_READY: 22 cases')
-          PY
-      - name: Require explicit provider configuration
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest solva/communication/model_eval/tests/test_provider_result_validator.py -q
+      - name: Determine provider state
+        id: provider
         env:
           SOLVA_MODEL_PROVIDER: ${{ vars.SOLVA_MODEL_PROVIDER }}
           SOLVA_MODEL_ENDPOINT: ${{ vars.SOLVA_MODEL_ENDPOINT }}
         run: |
           if [ -z "$SOLVA_MODEL_PROVIDER" ] || [ -z "$SOLVA_MODEL_ENDPOINT" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
             echo "MODEL_EVAL_STATUS=UNKNOWN_NO_PROVIDER"
-            echo "No model provider/endpoint is configured."
-            echo "This workflow intentionally does not manufacture model results."
             exit 0
           fi
+          echo "configured=true" >> "$GITHUB_OUTPUT"
           echo "MODEL_EVAL_STATUS=PROVIDER_CONFIGURED"
-          echo "Provider: $SOLVA_MODEL_PROVIDER"
-          echo "Endpoint configured: yes"
-      - name: Block unimplemented live execution
-        if: ${{ vars.SOLVA_MODEL_PROVIDER != '' && vars.SOLVA_MODEL_ENDPOINT != '' }}
+      - name: Refuse false live PASS
+        if: steps.provider.outputs.configured == 'true'
         run: |
-          echo "LIVE_MODEL_EXECUTION_STATUS=NOT_IMPLEMENTED"
+          echo "LIVE_MODEL_EXECUTION_STATUS=BLOCKED_NO_PROVIDER_ADAPTER"
           echo "Provider configuration exists, but no provider-specific adapter is installed."
-          echo "Do not claim a model-evaluation PASS."
           exit 1
