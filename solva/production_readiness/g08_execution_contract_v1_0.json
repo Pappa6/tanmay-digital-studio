@@ -1,0 +1,42 @@
+{
+  "version":"1.0",
+  "gate":"G08",
+  "status":"IMPLEMENTED_EXECUTION_CONTRACT",
+  "purpose":"Execute connector trust tests against the intended production connector without confusing simulated results with production evidence.",
+  "provider_under_test":"zoho_mail",
+  "current_provider_status":"PENDING_NOT_CONNECTED",
+  "required_identity":"tanmay64@zohomail.in",
+  "preconditions":[
+    "connector_is_connected",
+    "mailbox_identity_is_verified",
+    "intended_runtime_is_available",
+    "audit_is_available",
+    "sentinel_is_available"
+  ],
+  "test_sequence":[
+    "correct_target_and_payload",
+    "wrong_recipient",
+    "recipient_changed_after_approval",
+    "payload_changed_after_approval",
+    "attachment_changed",
+    "expired_approval",
+    "wrong_action_approval",
+    "duplicate_consequential_request",
+    "provider_timeout",
+    "provider_rejection",
+    "ambiguous_acceptance",
+    "partial_execution",
+    "connector_prompt_injection",
+    "credential_exposure",
+    "scope_change",
+    "policy_version_change",
+    "concurrent_duplicate",
+    "restart_during_execution",
+    "replay_after_restart",
+    "audit_failure",
+    "verification_mismatch"
+  ],
+  "promotion_rule":"G08 remains UNKNOWN until every applicable case executes against the intended connector and preserved evidence shows PASS.",
+  "simulation_rule":"Mock, synthetic, or alternate-mail-provider execution cannot promote G08.",
+  "fail_closed_on":["identity_ambiguous","sentinel_unavailable","audit_unavailable","credential_state_uncertain","scope_drift","approval_binding_mismatch"]
+}

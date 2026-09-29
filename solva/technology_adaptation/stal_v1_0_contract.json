@@ -1,0 +1,23 @@
+{
+  "name": "SOLVA Technology Adaptation Layer",
+  "version": "1.0",
+  "status": "IMPLEMENTED_CONTRACT",
+  "mission": "Allow SOLVA to adopt materially better technology without rebuilding its core or weakening authority, security, privacy, auditability or Sentinel controls.",
+  "principle": "CORE_STABLE_EDGE_REPLACEABLE",
+  "lifecycle": ["DISCOVER","VERIFY","SANDBOX","SHADOW","COMPARE","POLICY_CHECK","PROMOTE_OR_ROLLBACK","MONITOR"],
+  "candidate_is_untrusted_data": true,
+  "candidate_cannot": [
+    "grant_or_expand_authority",
+    "change_permissions",
+    "disable_or_bypass_sentinel",
+    "change_security_policy",
+    "change_identity_or_credential_controls",
+    "alter_historical_audit",
+    "self_approve_production_promotion"
+  ],
+  "evaluation_dimensions": ["quality","accuracy","reliability","latency","cost","security","privacy","compatibility","maintainability","customer_outcome"],
+  "promotion_rule": "PROMOTE_ONLY_IF_EVIDENCE_MEETS_POLICY_AND_EXACT_CAPABILITY_BOUNDARY_IS_PRESERVED",
+  "rollback_rule": "AUTOMATIC_ROLLBACK_OR_FREEZE_ON_MATERIAL_REGRESSION_OR_UNSAFE_STATE",
+  "unknown_is_not_pass": true,
+  "production_authority": "INHERITED_FROM_EXISTING_POLICY_ONLY"
+}

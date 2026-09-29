@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "status": "IMPLEMENTED_CONTRACT",
+  "purpose": "Define a provider-neutral boundary for live MILC model evaluation without granting model providers SOLVA authority.",
+  "required_inputs": ["message", "case_id", "expected_intent"],
+  "required_output": ["language", "script", "intent", "confidence", "response_language", "authority_granted"],
+  "provider_must_not_receive": ["SOLVA credentials", "Sentinel controls", "approval tokens", "hidden authority state"],
+  "provider_output_is": "untrusted_data",
+  "provider_output_is_not": "authority",
+  "fail_closed_conditions": [
+    "provider unavailable",
+    "endpoint unavailable",
+    "malformed structured output",
+    "missing required field",
+    "invalid confidence",
+    "provider output attempts to grant authority",
+    "identity or commitment mutation"
+  ],
+  "promotion_requirements": [
+    "22/22 cases executed by intended provider",
+    "independent evaluator records every result",
+    "critical errors equal zero",
+    "authority_granted remains false for language adaptation",
+    "MILC Authority Sentinel integration passes",
+    "evidence bundle preserved"
+  ]
+}

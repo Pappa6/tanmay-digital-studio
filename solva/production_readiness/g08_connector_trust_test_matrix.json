@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "gate": "G08",
+  "name": "Connector Trust Boundary",
+  "status": "DESIGNED",
+  "purpose": "Test real connector integrations without allowing provider capability to become agent authority.",
+  "test_policy": "Every applicable failure mode must be tested in a real environment before G08 can pass.",
+  "cases": [
+    "correct_target_and_payload",
+    "wrong_recipient",
+    "recipient_changed_after_approval",
+    "payload_changed_after_approval",
+    "attachment_changed_after_approval",
+    "expired_approval",
+    "approval_for_different_action",
+    "duplicate_consequential_request",
+    "provider_timeout",
+    "provider_rejection",
+    "provider_acceptance_with_ambiguous_result",
+    "partial_execution",
+    "connector_response_prompt_injection",
+    "credential_exposure_attempt",
+    "scope_change_after_approval",
+    "policy_version_change_before_commit",
+    "concurrent_duplicate_execution",
+    "restart_during_execution",
+    "replay_after_restart",
+    "audit_failure",
+    "verification_mismatch"
+  ],
+  "pass_requirements": [
+    "all_applicable_cases_have_evidence",
+    "no_critical_case_is_UNKNOWN",
+    "no_unapproved_external_write_occurs",
+    "ambiguous_provider_state_is_reconciled",
+    "duplicate_consequential_action_is_not_replayed",
+    "credential_material_is_not_exposed",
+    "audit_evidence_is_integrity_checked",
+    "post_action_result_is_independently_verified"
+  ],
+  "provider_status": {
+    "zoho_mail": "PENDING_NOT_CONNECTED",
+    "gmail": "NOT_AVAILABLE_IN_CURRENT_ENVIRONMENT",
+    "outlook": "CONNECTED_TESTED_BUT_NOT_USER_MAILBOX"
+  },
+  "promotion_rule": "G08 remains UNKNOWN until at least one intended production connector is actually connected and the applicable matrix is executed with preserved evidence."
+}

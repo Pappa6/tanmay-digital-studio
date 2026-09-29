@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "gate":"G10",
+  "name":"Outcome Assurance",
+  "status":"DESIGNED",
+  "purpose":"Prove that SOLVA distinguishes activity from business outcome and never claims success without independent evidence.",
+  "loop":["DEFINE_SUCCESS","BASELINE","EXPECTED_OUTCOME","AUTHORIZE","EXECUTE","MEASURE_ACTUAL","RECONCILE","COMPARE","DECIDE","LEARN"],
+  "required_evidence":["baseline_or_explicit_no_baseline","expected_outcome","action_evidence","independent_actual_outcome_evidence","expected_vs_actual_comparison","variance_explanation_or_unknown"],
+  "truth_rules":{"unknown_is_not_pass":true,"unverified_success_claim":"BLOCK","invented_metric":"BLOCK","missing_baseline":"UNKNOWN_OR_ESCALATE","causal_claim_without_evidence":"BLOCK"},
+  "business_rules":{"activity_is_not_outcome":true,"outcome_must_be_measurable":true,"material_variance_requires_explanation":true,"negative_or_neutral_result_must_be_reported":true},
+  "authority":{"outcome_measurement_cannot_grant_authority":true,"learning_cannot_change_permissions":true},
+  "promotion_rule":"G10 cannot pass until outcome measurement, independent verification, variance analysis, and evidence preservation are exercised in the intended runtime on applicable real workflows."
+}

@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "status": "IMPLEMENTED_CONTRACT",
+  "gate": "SRL",
+  "name": "SOLVA Runtime Security Layer",
+  "purpose": "Provide a deterministic enforcement boundary outside SOLVA intelligence for sandboxing, credential isolation, network/tool restrictions, runtime monitoring, and evidence capture without increasing agent authority.",
+  "architectural_position": "SOLVA Intelligence -> Mission/Intent -> Policy Engine -> Authorization Gateway -> SRL -> Sandboxed Execution -> Independent Sentinel -> Verification -> Audit -> Outcome",
+  "design_principles": [
+    "security_is_enforced_outside_llm_reasoning",
+    "deny_by_default",
+    "least_privilege_per_mission",
+    "credentials_are_runtime_handles_not_agent_context",
+    "network_and_tool_access_are_policy_bound",
+    "sandbox_boundary_is_deterministic",
+    "sentinel_is_independent_and_cannot_be_disabled_by_agent",
+    "all_consequential_runtime_events_are_auditable",
+    "unknown_or_integrity_uncertainty_fails_closed",
+    "runtime_security_never_grants_authority"
+  ],
+  "controls": {
+    "sandbox": [
+      "isolated_task_filesystem",
+      "process_restriction",
+      "resource_limits",
+      "workspace_boundary_enforcement",
+      "no_unapproved_host_access"
+    ],
+    "credential_isolation": [
+      "no_secret_material_in_agent_context",
+      "runtime_secret_injection_only_when_authorized",
+      "credential_scope_bound_to_task_and_tool",
+      "credential_use_audited_without_logging_secret_value",
+      "credential_revocation_or_expiry_supported"
+    ],
+    "network_and_tool_control": [
+      "allowlisted_or_policy_bound_endpoints",
+      "tool_scope_bound_to_authorized_mission",
+      "external_write_requires_gateway_and_sentinel_checks",
+      "unapproved_arbitrary_network_access_denied"
+    ],
+    "runtime_monitoring": [
+      "process_activity",
+      "filesystem_activity",
+      "network_activity",
+      "tool_invocations",
+      "policy_decisions",
+      "security_events",
+      "resource_exhaustion"
+    ],
+    "evidence": [
+      "pre_execution_decision",
+      "execution_event",
+      "provider_or_system_result",
+      "post_execution_verification",
+      "policy_version",
+      "request_fingerprint",
+      "mission_id",
+      "task_id",
+      "idempotency_key"
+    ]
+  },
+  "enforcement_rules": [
+    "LLM_prompt_cannot_override_runtime_policy",
+    "untrusted_content_cannot_expand_runtime_permissions",
+    "scope_change_requires_fresh_authorization",
+    "credential_exposure_freezes_execution",
+    "sandbox_integrity_failure_freezes_execution",
+    "sentinel_unavailable_blocks_consequential_execution",
+    "audit_unavailable_blocks_consequential_execution",
+    "ambiguous_external_state_blocks_unsafe_retry"
+  ],
+  "integration_contract": {
+    "policy_engine": "defines permitted capability and data/network boundaries",
+    "authorization_gateway": "binds identity, target, scope, approval, request fingerprint and idempotency",
+    "sentinel": "independent monitor/block authority; agent cannot disable or bypass",
+    "execution_tools": "receive only runtime-approved, scoped requests",
+    "audit": "records security-relevant transitions and evidence references",
+    "outcome_assurance": "consumes verified execution and outcome evidence"
+  },
+  "non_goals": [
+    "does_not_replace_sentinel",
+    "does_not_replace_policy_engine",
+    "does_not_define_business_authority",
+    "does_not_store_or_expose_raw_credentials_to_agents",
+    "does_not_convert_prototype_or_local_tests_into_production_evidence"
+  ],
+  "promotion_rule": "SRL implementation may be marked TESTED only after deterministic contract tests and failure-injection tests pass. Production use requires intended-runtime evidence, applicable G08/G09/G11 controls, and explicit G12 release approval. SRL never grants new authority."
+}

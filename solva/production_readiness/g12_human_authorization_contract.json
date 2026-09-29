@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "gate":"G12",
+  "name":"Human Authorization & Release Control",
+  "status":"DESIGNED",
+  "purpose":"Ensure production authority is explicitly granted by an authorized human and cannot be inferred from silence, model confidence, test counts, or automation success.",
+  "required_evidence":["authorized_reviewer_identity","release_scope","reviewed_evidence_bundle","known_limitations","approval_timestamp","approval_record","rollback_or_stop_plan"],
+  "hard_rules":["silence_is_not_approval","model_confidence_is_not_authority","test_pass_count_is_not_authority","local_simulation_is_not_production_approval","Sentinel_cannot_self_approve","approval_must_bind_to_exact_release_scope"],
+  "release_states":["NOT_READY","READY_FOR_REVIEW","APPROVED","REJECTED","EXPIRED","REVOKED"],
+  "promotion_rule":"G12 passes only when an authorized human explicitly approves the exact evidence-backed release scope after reviewing known limitations and rollback/stop controls."
+}

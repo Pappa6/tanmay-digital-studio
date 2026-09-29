@@ -1,0 +1,41 @@
+{
+  "name": "SOLVA MILC Indian Language Registry",
+  "version": "1.0",
+  "status": "IMPLEMENTED_CONTRACT",
+  "scope": "Eighth Schedule languages of the Constitution of India, plus English as an operational business language",
+  "languages": [
+    {"code":"as","name":"Assamese","scripts":["Bengali-Assamese"]},
+    {"code":"bn","name":"Bengali","scripts":["Bengali"]},
+    {"code":"brx","name":"Bodo","scripts":["Devanagari"]},
+    {"code":"doi","name":"Dogri","scripts":["Devanagari"]},
+    {"code":"gu","name":"Gujarati","scripts":["Gujarati"]},
+    {"code":"hi","name":"Hindi","scripts":["Devanagari"]},
+    {"code":"kn","name":"Kannada","scripts":["Kannada"]},
+    {"code":"ks","name":"Kashmiri","scripts":["Perso-Arabic","Devanagari"]},
+    {"code":"kok","name":"Konkani","scripts":["Devanagari","Roman","Kannada","Malayalam"]},
+    {"code":"mai","name":"Maithili","scripts":["Devanagari"]},
+    {"code":"ml","name":"Malayalam","scripts":["Malayalam"]},
+    {"code":"mni","name":"Manipuri","scripts":["Meitei Mayek","Bengali"]},
+    {"code":"mr","name":"Marathi","scripts":["Devanagari"]},
+    {"code":"ne","name":"Nepali","scripts":["Devanagari"]},
+    {"code":"or","name":"Odia","scripts":["Odia"]},
+    {"code":"pa","name":"Punjabi","scripts":["Gurmukhi","Perso-Arabic"]},
+    {"code":"sa","name":"Sanskrit","scripts":["Devanagari","Other traditional scripts"]},
+    {"code":"sat","name":"Santali","scripts":["Ol Chiki","Other scripts"]},
+    {"code":"sd","name":"Sindhi","scripts":["Perso-Arabic","Devanagari"]},
+    {"code":"ta","name":"Tamil","scripts":["Tamil"]},
+    {"code":"te","name":"Telugu","scripts":["Telugu"]},
+    {"code":"ur","name":"Urdu","scripts":["Perso-Arabic"]}
+  ],
+  "operational_language": {"code":"en","name":"English","scheduled_language":false},
+  "selection_policy": {
+    "priority": ["explicit_customer_preference","current_message_language","recent_conversation_language","public_language_evidence","neutral_fallback"],
+    "prohibited_inference": ["location_alone","name_alone","phone_number_alone","presumed_ethnicity"],
+    "low_confidence": "CLARIFY_OR_ESCALATE"
+  },
+  "notes": [
+    "Language and script are separate signals.",
+    "Romanized Indian-language messages are supported as a script/transliteration condition, not as a separate constitutional language.",
+    "Coverage in this registry defines architectural support; it does not by itself prove model-level fluency or production translation quality for every language."
+  ]
+}

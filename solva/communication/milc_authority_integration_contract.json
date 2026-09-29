@@ -1,0 +1,41 @@
+{
+  "version":"1.0",
+  "status":"IMPLEMENTED_CONTRACT",
+  "integration":"SOLVA communication + trust boundary",
+  "rules":[
+    "language_adaptation_never_grants_authority",
+    "routine_low_risk_customer_reply_may_autosend_when_authorized",
+    "material_or_binding_action_follows_existing_authority_policy",
+    "customer_language_is_not_an_authorization_signal",
+    "translation_must_preserve_request_fingerprint",
+    "response_language_change_does_not_change_scope",
+    "multilingual_output_remains_subject_to_sentinel",
+    "low_confidence_language_state_routes_to_clarify_or_escalate"
+  ],
+  "required_continuity_invariants":[
+    "mission_id",
+    "task_id",
+    "agent_id",
+    "policy_version",
+    "authority_scope",
+    "request_fingerprint",
+    "data_classification",
+    "evidence_references",
+    "expected_outcome",
+    "idempotency_key"
+  ],
+  "decision_flow":[
+    "classify_customer_message",
+    "detect_language_and_preference",
+    "preserve_semantic_request",
+    "evaluate_conversation_objective",
+    "apply_existing_authority_policy",
+    "sentinel_evaluation",
+    "generate_response",
+    "multilingual_qa",
+    "revalidate_binding",
+    "send_or_escalate",
+    "verify_result",
+    "audit"
+  ]
+}
