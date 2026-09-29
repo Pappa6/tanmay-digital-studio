@@ -1,0 +1,19 @@
+name: SOLVA Runtime Security Layer Tests
+
+on:
+  push:
+    branches: [solva-trust-hardening-v1]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  srl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check pytest
+      - run: python -m pytest solva/security/tests/test_runtime_security_layer_contract.py solva/security/tests/test_runtime_security_layer.py -q
